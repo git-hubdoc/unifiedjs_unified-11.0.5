@@ -1,0 +1,25 @@
+{
+  "title": "/vendors",
+  "files": [
+    {
+      "type": "folder",
+      "title": "github.com",
+      "href": "github.com"
+    },
+    {
+      "type": "folder",
+      "title": "img.shields.io",
+      "href": "img.shields.io"
+    },
+    {
+      "type": "folder",
+      "title": "opencollective.com",
+      "href": "opencollective.com"
+    },
+    {
+      "type": "folder",
+      "title": "raw.githubusercontent.com",
+      "href": "raw.githubusercontent.com"
+    }
+  ]
+}

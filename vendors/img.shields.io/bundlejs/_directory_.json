@@ -1,0 +1,10 @@
+{
+  "title": "/vendors/img.shields.io/bundlejs",
+  "files": [
+    {
+      "type": "folder",
+      "title": "size",
+      "href": "size"
+    }
+  ]
+}

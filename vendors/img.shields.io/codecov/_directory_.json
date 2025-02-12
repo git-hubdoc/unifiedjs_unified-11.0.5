@@ -1,0 +1,10 @@
+{
+  "title": "/vendors/img.shields.io/codecov",
+  "files": [
+    {
+      "type": "folder",
+      "title": "c",
+      "href": "c"
+    }
+  ]
+}

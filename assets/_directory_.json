@@ -1,0 +1,20 @@
+{
+  "title": "/assets",
+  "files": [
+    {
+      "type": "folder",
+      "title": "js",
+      "href": "js"
+    },
+    {
+      "type": "folder",
+      "title": "npm",
+      "href": "npm"
+    },
+    {
+      "type": "folder",
+      "title": "stylesheets",
+      "href": "stylesheets"
+    }
+  ]
+}

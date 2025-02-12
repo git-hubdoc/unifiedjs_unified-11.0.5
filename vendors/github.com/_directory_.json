@@ -1,0 +1,10 @@
+{
+  "title": "/vendors/github.com",
+  "files": [
+    {
+      "type": "folder",
+      "title": "unifiedjs",
+      "href": "unifiedjs"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "title": "/vendors/opencollective.com",
+  "files": [
+    {
+      "type": "folder",
+      "title": "unified",
+      "href": "unified"
+    }
+  ]
+}

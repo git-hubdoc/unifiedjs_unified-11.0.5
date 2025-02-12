@@ -1,0 +1,1494 @@
+
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/stylesheets/github-markdown.css">
+    <link rel="stylesheet" href="/assets/stylesheets/main.css">
+    <link rel="stylesheet" href="/assets/stylesheets/code-block.css">
+  </head>
+  <body>
+    <article class="markdown-body">
+      <html>
+        <head></head>
+        <body>
+          <h1 id=""><a href="https://unifiedjs.com"><img src="/vendors/raw.githubusercontent.com/unifiedjs/unified/93862e5/logo.svg%25(63)sanitize=true" alt="unified"></a></h1>
+          <p>
+            <a href="https://github.com/unifiedjs/unified/actions"><img src="/vendors/github.com/unifiedjs/unified/workflows/main/badge.svg" alt="Build"></a>
+            <a href="https://codecov.io/github/unifiedjs/unified"><img src="/vendors/img.shields.io/codecov/c/github/unifiedjs/unified.svg" alt="Coverage"></a>
+            <a href="https://www.npmjs.com/package/unified"><img src="/vendors/img.shields.io/npm/dm/unified.svg" alt="Downloads"></a>
+            <a href="https://bundlejs.com/?q=unified"><img src="/vendors/img.shields.io/bundlejs/size/unified" alt="Size"></a>
+            <a href="https://opencollective.com/unified"><img src="/vendors/opencollective.com/unified/sponsors/badge.svg" alt="Sponsors"></a>
+            <a href="https://opencollective.com/unified"><img src="/vendors/opencollective.com/unified/backers/badge.svg" alt="Backers"></a>
+            <a href="https://github.com/unifiedjs/unified/discussions"><img src="/vendors/img.shields.io/badge/chat-discussions-success.svg" alt="Chat"></a>
+          </p>
+          <p><strong>unified</strong> lets you inspect and transform content with plugins.</p>
+          <h2 id="contents"><a aria-hidden="true" tabindex="-1" href="#contents"><span class="icon icon-link"></span></a>Contents</h2>
+          <ul>
+            <li><a href="#what-is-this">What is this?</a></li>
+            <li><a href="#when-should-i-use-this">When should I use this?</a></li>
+            <li><a href="#install">Install</a></li>
+            <li><a href="#use">Use</a></li>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#api">API</a>
+              <ul>
+                <li><a href="#processor"><code>processor()</code></a></li>
+                <li><a href="#processorcompiler"><code>processor.compiler</code></a></li>
+                <li><a href="#processordatakey-value"><code>processor.data([key[, value]])</code></a></li>
+                <li><a href="#processorfreeze"><code>processor.freeze()</code></a></li>
+                <li><a href="#processorparsefile"><code>processor.parse(file)</code></a></li>
+                <li><a href="#processorparser"><code>processor.parser</code></a></li>
+                <li><a href="#processorprocessfile-done"><code>processor.process(file[, done])</code></a></li>
+                <li><a href="#processorprocesssyncfile"><code>processor.processSync(file)</code></a></li>
+                <li><a href="#processorruntree-file-done"><code>processor.run(tree[, file][, done])</code></a></li>
+                <li><a href="#processorrunsynctree-file"><code>processor.runSync(tree[, file])</code></a></li>
+                <li><a href="#processorstringifytree-file"><code>processor.stringify(tree[, file])</code></a></li>
+                <li><a href="#processoruseplugin-options"><code>processor.use(plugin[, options])</code></a></li>
+                <li><a href="#compileresultmap"><code>CompileResultMap</code></a></li>
+                <li><a href="#compileresults"><code>CompileResults</code></a></li>
+                <li><a href="#compiler"><code>Compiler</code></a></li>
+                <li><a href="#data"><code>Data</code></a></li>
+                <li><a href="#parser"><code>Parser</code></a></li>
+                <li><a href="#pluggable"><code>Pluggable</code></a></li>
+                <li><a href="#pluggablelist"><code>PluggableList</code></a></li>
+                <li><a href="#plugin"><code>Plugin</code></a></li>
+                <li><a href="#plugintuple"><code>PluginTuple</code></a></li>
+                <li><a href="#preset"><code>Preset</code></a></li>
+                <li><a href="#processcallback"><code>ProcessCallback</code></a></li>
+                <li><a href="#processor-1"><code>Processor</code></a></li>
+                <li><a href="#runcallback"><code>RunCallback</code></a></li>
+                <li><a href="#settings"><code>Settings</code></a></li>
+                <li><a href="#transformcallback"><code>TransformCallback</code></a></li>
+                <li><a href="#transformer"><code>Transformer</code></a></li>
+              </ul>
+            </li>
+            <li><a href="#types">Types</a></li>
+            <li><a href="#compatibility">Compatibility</a></li>
+            <li><a href="#contribute">Contribute</a></li>
+            <li><a href="#sponsor">Sponsor</a></li>
+            <li><a href="#acknowledgments">Acknowledgments</a></li>
+            <li><a href="#license">License</a></li>
+          </ul>
+          <h2 id="what-is-this"><a aria-hidden="true" tabindex="-1" href="#what-is-this"><span class="icon icon-link"></span></a>What is this?</h2>
+          <p>unified is two things:</p>
+          <ul>
+            <li>
+              <strong>unified</strong> is a collective of 500+ free and open source packages that work
+              with content as structured data (ASTs)
+            </li>
+            <li>
+              <code>unified</code> (this project) is the core package, used in 1.3m+ projects on GH,
+              to process content with plugins
+            </li>
+          </ul>
+          <p>
+            Several ecosystems are built on unified around different kinds of content.
+            Notably, <a href="https://github.com/remarkjs/remark">remark</a> (markdown), <a href="https://github.com/rehypejs/rehype">rehype</a> (HTML), and <a href="https://github.com/retextjs/retext">retext</a> (natural
+            language).
+            These ecosystems can be connected together.
+          </p>
+          <ul>
+            <li>for more about us, see <a href="https://unifiedjs.com"><code>unifiedjs.com</code></a></li>
+            <li>for updates, see <a href="https://twitter.com/unifiedjs">@unifiedjs</a> on Twitter</li>
+            <li>for questions, see <a href="https://github.com/unifiedjs/.github/blob/main/support.md">support</a></li>
+            <li>to help, see <a href="#contribute">contribute</a> and <a href="#sponsor">sponsor</a> below</li>
+          </ul>
+          <h2 id="when-should-i-use-this"><a aria-hidden="true" tabindex="-1" href="#when-should-i-use-this"><span class="icon icon-link"></span></a>When should I use this?</h2>
+          <p>
+            In some cases, you are already using unified.
+            For example, it’s used in MDX, Gatsby, Docusaurus, etc.
+            In those cases, you don’t need to add <code>unified</code> yourself but you can include
+            plugins into those projects.
+          </p>
+          <p>
+            But the real fun (for some) is to get your hands dirty and work with syntax
+            trees and build with it yourself.
+            You can create those projects, or things like Prettier, or your own site
+            generator.
+            You can connect utilities together and make your own plugins that check for
+            problems and transform from one thing to another.
+          </p>
+          <p>
+            When you are dealing with one type of content (such as markdown), you can use
+            the main package of that ecosystem instead (so <code>remark</code>).
+            When you are dealing with different kinds of content (such as markdown and
+            HTML), it’s recommended to use <code>unified</code> itself, and pick and choose the plugins
+            you need.
+          </p>
+          <h2 id="install"><a aria-hidden="true" tabindex="-1" href="#install"><span class="icon icon-link"></span></a>Install</h2>
+          <p>
+            This package is <a href="https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c">ESM only</a>.
+            In Node.js (version 16+), install with <a href="https://docs.npmjs.com/cli/install">npm</a>:
+          </p>
+          <pre><code class="language-sh">npm install unified
+</code></pre>
+          <p>In Deno with <a href="https://esm.sh"><code>esm.sh</code></a>:</p>
+          <pre><code class="language-js"><span class="pl-k">import</span> {<span class="pl-smi">unified</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>https://esm.sh/unified@11<span class="pl-pds">'</span></span>
+</code></pre>
+          <p>In browsers with <a href="https://esm.sh"><code>esm.sh</code></a>:</p>
+          <pre><code class="language-html">&#x3C;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>module<span class="pl-pds">"</span></span>>
+  <span class="pl-k">import</span> {<span class="pl-smi">unified</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>https://esm.sh/unified@11?bundle<span class="pl-pds">'</span></span>
+&#x3C;/<span class="pl-ent">script</span>>
+</code></pre>
+          <h2 id="use"><a aria-hidden="true" tabindex="-1" href="#use"><span class="icon icon-link"></span></a>Use</h2>
+          <pre><code class="language-js"><span class="pl-k">import</span> <span class="pl-smi">rehypeDocument</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>rehype-document<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">rehypeFormat</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>rehype-format<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">rehypeStringify</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>rehype-stringify<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">remarkParse</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>remark-parse<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">remarkRehype</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>remark-rehype<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> {<span class="pl-smi">unified</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>unified<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> {<span class="pl-smi">reporter</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>vfile-reporter<span class="pl-pds">'</span></span>
+
+<span class="pl-k">const</span> <span class="pl-c1">file</span> <span class="pl-k">=</span> <span class="pl-k">await</span> <span class="pl-en">unified</span>()
+  .<span class="pl-en">use</span>(remarkParse)
+  .<span class="pl-en">use</span>(remarkRehype)
+  .<span class="pl-en">use</span>(rehypeDocument, {title<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>👋🌍<span class="pl-pds">'</span></span>})
+  .<span class="pl-en">use</span>(rehypeFormat)
+  .<span class="pl-en">use</span>(rehypeStringify)
+  .<span class="pl-en">process</span>(<span class="pl-s"><span class="pl-pds">'</span># Hello world!<span class="pl-pds">'</span></span>)
+
+<span class="pl-en">console</span>.<span class="pl-c1">error</span>(<span class="pl-en">reporter</span>(file))
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-c1">String</span>(file))
+</code></pre>
+          <p>Yields:</p>
+          <pre><code class="language-txt">no issues found
+</code></pre>
+          <pre><code class="language-html">&#x3C;!doctype html>
+&#x3C;<span class="pl-ent">html</span> <span class="pl-e">lang</span>=<span class="pl-s"><span class="pl-pds">"</span>en<span class="pl-pds">"</span></span>>
+  &#x3C;<span class="pl-ent">head</span>>
+    &#x3C;<span class="pl-ent">meta</span> <span class="pl-e">charset</span>=<span class="pl-s"><span class="pl-pds">"</span>utf-8<span class="pl-pds">"</span></span>>
+    &#x3C;<span class="pl-ent">title</span>>👋🌍&#x3C;/<span class="pl-ent">title</span>>
+    &#x3C;<span class="pl-ent">meta</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>viewport<span class="pl-pds">"</span></span> <span class="pl-e">content</span>=<span class="pl-s"><span class="pl-pds">"</span>width=device-width, initial-scale=1<span class="pl-pds">"</span></span>>
+  &#x3C;/<span class="pl-ent">head</span>>
+  &#x3C;<span class="pl-ent">body</span>>
+    &#x3C;<span class="pl-ent">h1</span>>Hello world!&#x3C;/<span class="pl-ent">h1</span>>
+  &#x3C;/<span class="pl-ent">body</span>>
+&#x3C;/<span class="pl-ent">html</span>>
+</code></pre>
+          <p></p>
+          <h2 id="overview"><a aria-hidden="true" tabindex="-1" href="#overview"><span class="icon icon-link"></span></a>Overview</h2>
+          <p>
+            <code>unified</code> is an interface for processing content with syntax trees.
+            Syntax trees are a representation of content understandable to programs.
+            Those programs, called <em><a href="#plugin">plugins</a></em>, take these trees and inspect and
+            modify them.
+            To get to the syntax tree from text, there is a <em><a href="#parser">parser</a></em>.
+            To get from that back to text, there is a <em><a href="#compiler">compiler</a></em>.
+            This is the <em><a href="#processorprocessfile-done">process</a></em> of a <em>processor</em>.
+          </p>
+          <pre><code class="language-ascii">| ........................ process ........................... |
+| .......... parse ... | ... run ... | ... stringify ..........|
+
+          +--------+                     +----------+
+Input ->- | Parser | ->- Syntax Tree ->- | Compiler | ->- Output
+          +--------+          |          +----------+
+                              X
+                              |
+                       +--------------+
+                       | Transformers |
+                       +--------------+
+</code></pre>
+          <h6 id="processors"><a aria-hidden="true" tabindex="-1" href="#processors"><span class="icon icon-link"></span></a>Processors</h6>
+          <p>
+            Processors process content.
+            On its own, <code>unified</code> (the root processor) doesn’t work.
+            It needs to be configured with plugins to work.
+            For example:
+          </p>
+          <pre><code class="language-js"><span class="pl-k">const</span> <span class="pl-c1">processor</span> <span class="pl-k">=</span> <span class="pl-en">unified</span>()
+  .<span class="pl-en">use</span>(remarkParse)
+  .<span class="pl-en">use</span>(remarkRehype)
+  .<span class="pl-en">use</span>(rehypeDocument, {title<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>👋🌍<span class="pl-pds">'</span></span>})
+  .<span class="pl-en">use</span>(rehypeFormat)
+  .<span class="pl-en">use</span>(rehypeStringify)
+</code></pre>
+          <p>
+            That processor can do different things.
+            It can:
+          </p>
+          <ul>
+            <li>…parse markdown (<code>parse</code>)</li>
+            <li>…turn parsed markdown into HTML and format the HTML (<code>run</code>)</li>
+            <li>…compile HTML (<code>stringify</code>)</li>
+            <li>…do all of the above (<code>process</code>)</li>
+          </ul>
+          <p>
+            Every processor implements another processor.
+            To create a processor, call another processor.
+            The new processor is configured to work the same as its ancestor.
+            But when the descendant processor is configured in the future it does not affect
+            the ancestral processor.
+          </p>
+          <p>
+            When processors are exposed from a module (for example, <code>unified</code> itself) they
+            should not be configured directly, as that would change their behavior for all
+            module users.
+            Those processors are <em><a href="#processorfreeze">frozen</a></em> and they should be called to create
+            a new processor before they are used.
+          </p>
+          <h6 id="file"><a aria-hidden="true" tabindex="-1" href="#file"><span class="icon icon-link"></span></a>File</h6>
+          <p>
+            When processing a document, metadata is gathered about that document.
+            <a href="https://github.com/vfile/vfile"><code>vfile</code></a> is the file format that stores data, metadata, and messages
+            about files for unified and plugins.
+          </p>
+          <p>There are several <a href="https://github.com/vfile/vfile#list-of-utilities">utilities</a> for working with these files.</p>
+          <h6 id="syntax-tree"><a aria-hidden="true" tabindex="-1" href="#syntax-tree"><span class="icon icon-link"></span></a>Syntax tree</h6>
+          <p>
+            The syntax trees used in unified are <a href="https://github.com/syntax-tree/unist">unist</a> nodes.
+            A tree represents a whole document and each <a href="https://github.com/syntax-tree/unist#node">node</a> is a plain JavaScript
+            object with a <code>type</code> field.
+            The semantics of nodes and the format of syntax trees is defined by other
+            projects:
+          </p>
+          <ul>
+            <li><a href="https://github.com/syntax-tree/esast">esast</a> — JavaScript</li>
+            <li><a href="https://github.com/syntax-tree/hast">hast</a> — HTML</li>
+            <li><a href="https://github.com/syntax-tree/mdast">mdast</a> — markdown</li>
+            <li><a href="https://github.com/syntax-tree/nlcst">nlcst</a> — natural language</li>
+            <li><a href="https://github.com/syntax-tree/xast">xast</a> — XML</li>
+          </ul>
+          <p>
+            There are many utilities for working with trees listed in each aforementioned
+            project and maintained in the <a href="https://github.com/syntax-tree"><code>syntax-tree</code></a> organization.
+            These utilities are a level lower than unified itself and are building blocks
+            that can be used to make plugins.
+          </p>
+          <p></p>
+          <h6 id="ecosystems"><a aria-hidden="true" tabindex="-1" href="#ecosystems"><span class="icon icon-link"></span></a>Ecosystems</h6>
+          <p>
+            Around each syntax tree is an ecosystem that focusses on that particular kind
+            of content.
+            At their core, they parse text to a tree and compile that tree back to text.
+            They also provide plugins that work with the syntax tree, without requiring
+            that the end user has knowledge about that tree.
+          </p>
+          <ul>
+            <li><a href="https://github.com/rehypejs/rehype">rehype</a> (hast) — HTML</li>
+            <li><a href="https://github.com/remarkjs/remark">remark</a> (mdast) — markdown</li>
+            <li><a href="https://github.com/retextjs/retext">retext</a> (nlcst) — natural language</li>
+          </ul>
+          <p></p>
+          <h6 id="plugins"><a aria-hidden="true" tabindex="-1" href="#plugins"><span class="icon icon-link"></span></a>Plugins</h6>
+          <p>
+            Each aforementioned ecosystem comes with a large set of plugins that you can
+            pick and choose from to do all kinds of things.
+          </p>
+          <ul>
+            <li>
+              <a href="https://github.com/remarkjs/remark/blob/main/doc/plugins.md#list-of-plugins">List of remark plugins</a> ·
+              <a href="https://github.com/remarkjs/awesome-remark"><code>remarkjs/awesome-remark</code></a> ·
+              <a href="https://github.com/topics/remark-plugin"><code>remark-plugin</code> topic</a>
+            </li>
+            <li>
+              <a href="https://github.com/rehypejs/rehype/blob/main/doc/plugins.md#list-of-plugins">List of rehype plugins</a> ·
+              <a href="https://github.com/rehypejs/awesome-rehype"><code>rehypejs/awesome-rehype</code></a> ·
+              <a href="https://github.com/topics/rehype-plugin"><code>rehype-plugin</code> topic</a>
+            </li>
+            <li>
+              <a href="https://github.com/retextjs/retext/blob/main/doc/plugins.md#list-of-plugins">List of retext plugins</a> ·
+              <a href="https://github.com/retextjs/awesome-retext"><code>retextjs/awesome-retext</code></a> ·
+              <a href="https://github.com/topics/retext-plugin"><code>retext-plugin</code> topic</a>
+            </li>
+          </ul>
+          <p>There are also a few plugins that work in any ecosystem:</p>
+          <ul>
+            <li>
+              <a href="https://github.com/unifiedjs/unified-diff"><code>unified-diff</code></a>
+              — ignore unrelated messages in GitHub Actions and Travis
+            </li>
+            <li>
+              <a href="https://github.com/unifiedjs/unified-infer-git-meta"><code>unified-infer-git-meta</code></a>
+              — infer metadata of a document from Git
+            </li>
+            <li>
+              <a href="https://github.com/unifiedjs/unified-message-control"><code>unified-message-control</code></a>
+              — enable, disable, and ignore messages from content
+            </li>
+          </ul>
+          <h6 id="configuration"><a aria-hidden="true" tabindex="-1" href="#configuration"><span class="icon icon-link"></span></a>Configuration</h6>
+          <p>
+            Processors are configured with <a href="#plugin">plugins</a> or with the
+            <a href="#data"><code>data</code></a> method.
+            Most plugins also accept configuration through options.
+            See each plugin’s readme for more info.
+          </p>
+          <h6 id="integrations"><a aria-hidden="true" tabindex="-1" href="#integrations"><span class="icon icon-link"></span></a>Integrations</h6>
+          <p>
+            unified can integrate with the file system through
+            <a href="https://github.com/unifiedjs/unified-engine"><code>unified-engine</code></a>.
+            CLI apps can be created with <a href="https://github.com/unifiedjs/unified-args"><code>unified-args</code></a>, Gulp plugins with
+            <a href="https://github.com/unifiedjs/unified-engine-gulp"><code>unified-engine-gulp</code></a>, and language servers with
+            <a href="https://github.com/unifiedjs/unified-language-server"><code>unified-language-server</code></a>.
+            A streaming interface can be created with <a href="https://github.com/unifiedjs/unified-stream"><code>unified-stream</code></a>.
+          </p>
+          <h6 id="programming-interface"><a aria-hidden="true" tabindex="-1" href="#programming-interface"><span class="icon icon-link"></span></a>Programming interface</h6>
+          <p>
+            The <a href="#api">API</a> provided by <code>unified</code> allows multiple files to be processed and
+            gives access to metadata (such as lint messages):
+          </p>
+          <pre><code class="language-js"><span class="pl-k">import</span> <span class="pl-smi">rehypeStringify</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>rehype-stringify<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">remarkParse</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>remark-parse<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">remarkPresetLintMarkdownStyleGuide</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>remark-preset-lint-markdown-style-guide<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">remarkRehype</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>remark-rehype<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">remarkRetext</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>remark-retext<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">retextEnglish</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>retext-english<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">retextEquality</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>retext-equality<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> {<span class="pl-smi">unified</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>unified<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> {<span class="pl-smi">reporter</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>vfile-reporter<span class="pl-pds">'</span></span>
+
+<span class="pl-k">const</span> <span class="pl-c1">file</span> <span class="pl-k">=</span> <span class="pl-k">await</span> <span class="pl-en">unified</span>()
+  .<span class="pl-en">use</span>(remarkParse)
+  .<span class="pl-en">use</span>(remarkPresetLintMarkdownStyleGuide)
+  .<span class="pl-en">use</span>(remarkRetext, <span class="pl-en">unified</span>().<span class="pl-en">use</span>(retextEnglish).<span class="pl-en">use</span>(retextEquality))
+  .<span class="pl-en">use</span>(remarkRehype)
+  .<span class="pl-en">use</span>(rehypeStringify)
+  .<span class="pl-en">process</span>(<span class="pl-s"><span class="pl-pds">'</span>*Emphasis* and _stress_, you guys!<span class="pl-pds">'</span></span>)
+
+<span class="pl-en">console</span>.<span class="pl-c1">error</span>(<span class="pl-en">reporter</span>(file))
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-c1">String</span>(file))
+</code></pre>
+          <p>Yields:</p>
+          <pre><code class="language-txt">1:16-1:24 warning Emphasis should use `*` as a marker                                 emphasis-marker remark-lint
+1:30-1:34 warning `guys` may be insensitive, use `people`, `persons`, `folks` instead gals-man        retext-equality
+
+⚠ 2 warnings
+</code></pre>
+          <pre><code class="language-html">&#x3C;<span class="pl-ent">p</span>>&#x3C;<span class="pl-ent">em</span>>Emphasis&#x3C;/<span class="pl-ent">em</span>> and &#x3C;<span class="pl-ent">em</span>>stress&#x3C;/<span class="pl-ent">em</span>>, you guys!&#x3C;/<span class="pl-ent">p</span>>
+</code></pre>
+          <p></p>
+          <h6 id="transforming-between-ecosystems"><a aria-hidden="true" tabindex="-1" href="#transforming-between-ecosystems"><span class="icon icon-link"></span></a>Transforming between ecosystems</h6>
+          <p>Ecosystems can be combined in two modes.</p>
+          <p>
+            <strong>Bridge</strong> mode transforms the tree from one format (<em>origin</em>) to another
+            (<em>destination</em>).
+            A different processor runs on the destination tree.
+            Afterwards, the original processor continues with the origin tree.
+          </p>
+          <p>
+            <strong>Mutate</strong> mode also transforms the syntax tree from one format to another.
+            But the original processor continues transforming the destination tree.
+          </p>
+          <p>
+            In the previous example (“Programming interface”), <code>remark-retext</code> is used in
+            bridge mode: the origin syntax tree is kept after retext is done; whereas
+            <code>remark-rehype</code> is used in mutate mode: it sets a new syntax tree and discards
+            the origin tree.
+          </p>
+          <p>The following plugins lets you combine ecosystems:</p>
+          <ul>
+            <li><a href="https://github.com/remarkjs/remark-retext"><code>remark-retext</code></a> — turn markdown into natural language</li>
+            <li><a href="https://github.com/remarkjs/remark-rehype"><code>remark-rehype</code></a> — turn markdown into HTML</li>
+            <li><a href="https://github.com/rehypejs/rehype-retext"><code>rehype-retext</code></a> — turn HTML into natural language</li>
+            <li><a href="https://github.com/rehypejs/rehype-remark"><code>rehype-remark</code></a> — turn HTML into markdown</li>
+          </ul>
+          <h2 id="api"><a aria-hidden="true" tabindex="-1" href="#api"><span class="icon icon-link"></span></a>API</h2>
+          <p>
+            This package exports the identifier <code>unified</code> (the root <code>processor</code>).
+            There is no default export.
+          </p>
+          <h3 id="processor"><a aria-hidden="true" tabindex="-1" href="#processor"><span class="icon icon-link"></span></a><code>processor()</code></h3>
+          <p>Create a new processor.</p>
+          <h6 id="returns"><a aria-hidden="true" tabindex="-1" href="#returns"><span class="icon icon-link"></span></a>Returns</h6>
+          <p>New <em><a href="#processorfreeze">unfrozen</a></em> processor (<a href="#processor"><code>processor</code></a>).</p>
+          <p>
+            This processor is configured to work the same as its ancestor.
+            When the descendant processor is configured in the future it does not affect
+            the ancestral processor.
+          </p>
+          <h6 id="example"><a aria-hidden="true" tabindex="-1" href="#example"><span class="icon icon-link"></span></a>Example</h6>
+          <p>
+            This example shows how a new processor can be created (from <code>remark</code>) and linked
+            to <strong>stdin</strong>(4) and <strong>stdout</strong>(4).
+          </p>
+          <pre><code class="language-js"><span class="pl-k">import</span> <span class="pl-smi">process</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>node:process<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">concatStream</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>concat-stream<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> {<span class="pl-smi">remark</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>remark<span class="pl-pds">'</span></span>
+
+<span class="pl-c1">process</span>.<span class="pl-smi">stdin</span>.<span class="pl-en">pipe</span>(
+  <span class="pl-en">concatStream</span>(<span class="pl-k">function</span> (<span class="pl-smi">buf</span>) {
+    <span class="pl-c1">process</span>.<span class="pl-smi">stdout</span>.<span class="pl-c1">write</span>(<span class="pl-c1">String</span>(<span class="pl-en">remark</span>().<span class="pl-en">processSync</span>(buf)))
+  })
+)
+</code></pre>
+          <h3 id="processorcompiler"><a aria-hidden="true" tabindex="-1" href="#processorcompiler"><span class="icon icon-link"></span></a><code>processor.compiler</code></h3>
+          <p>Compiler to use (<a href="#compiler"><code>Compiler</code></a>, optional).</p>
+          <h3 id="processordatakey-value"><a aria-hidden="true" tabindex="-1" href="#processordatakey-value"><span class="icon icon-link"></span></a><code>processor.data([key[, value]])</code></h3>
+          <p>
+            Configure the processor with info available to all plugins.
+            Information is stored in an object.
+          </p>
+          <p>
+            Typically, options can be given to a specific plugin, but sometimes it makes
+            sense to have information shared with several plugins.
+            For example, a list of HTML elements that are self-closing, which is needed
+            during all <a href="#overview">phases</a>.
+          </p>
+          <blockquote>
+            <p>
+              👉 <strong>Note</strong>: setting information cannot occur on <em><a href="#processorfreeze">frozen</a></em>
+              processors.
+              Call the processor first to create a new unfrozen processor.
+            </p>
+          </blockquote>
+          <blockquote>
+            <p>
+              👉 <strong>Note</strong>: to register custom data in TypeScript, augment the
+              <a href="#data"><code>Data</code></a> interface.
+            </p>
+          </blockquote>
+          <h6 id="signatures"><a aria-hidden="true" tabindex="-1" href="#signatures"><span class="icon icon-link"></span></a>Signatures</h6>
+          <ul>
+            <li><code>processor = processor.data(key, value)</code></li>
+            <li><code>processor = processor.data(dataset)</code></li>
+            <li><code>value = processor.data(key)</code></li>
+            <li><code>dataset = processor.data()</code></li>
+          </ul>
+          <h6 id="parameters"><a aria-hidden="true" tabindex="-1" href="#parameters"><span class="icon icon-link"></span></a>Parameters</h6>
+          <ul>
+            <li><code>key</code> (<a href="#data"><code>keyof Data</code></a>, optional) — field to get</li>
+            <li><code>value</code> (<a href="#data"><code>Data[key]</code></a>) — value to set</li>
+            <li><code>values</code> (<a href="#data"><code>Data</code></a>) — values to set</li>
+          </ul>
+          <h6 id="returns-1"><a aria-hidden="true" tabindex="-1" href="#returns-1"><span class="icon icon-link"></span></a>Returns</h6>
+          <p>
+            The current processor when setting (<a href="#processor"><code>processor</code></a>), the value at
+            <code>key</code> when getting (<a href="#data"><code>Data[key]</code></a>), or the entire dataset when
+            getting without key (<a href="#data"><code>Data</code></a>).
+          </p>
+          <h6 id="example-1"><a aria-hidden="true" tabindex="-1" href="#example-1"><span class="icon icon-link"></span></a>Example</h6>
+          <p>This example show how to get and set info:</p>
+          <pre><code class="language-js"><span class="pl-k">import</span> {<span class="pl-smi">unified</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>unified<span class="pl-pds">'</span></span>
+
+<span class="pl-k">const</span> <span class="pl-c1">processor</span> <span class="pl-k">=</span> <span class="pl-en">unified</span>().<span class="pl-c1">data</span>(<span class="pl-s"><span class="pl-pds">'</span>alpha<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>bravo<span class="pl-pds">'</span></span>)
+
+<span class="pl-smi">processor</span>.<span class="pl-c1">data</span>(<span class="pl-s"><span class="pl-pds">'</span>alpha<span class="pl-pds">'</span></span>) <span class="pl-c">// => 'bravo'</span>
+
+<span class="pl-smi">processor</span>.<span class="pl-c1">data</span>() <span class="pl-c">// => {alpha: 'bravo'}</span>
+
+<span class="pl-smi">processor</span>.<span class="pl-c1">data</span>({charlie<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>delta<span class="pl-pds">'</span></span>})
+
+<span class="pl-smi">processor</span>.<span class="pl-c1">data</span>() <span class="pl-c">// => {charlie: 'delta'}</span>
+</code></pre>
+          <h3 id="processorfreeze"><a aria-hidden="true" tabindex="-1" href="#processorfreeze"><span class="icon icon-link"></span></a><code>processor.freeze()</code></h3>
+          <p>Freeze a processor.</p>
+          <p>Frozen processors are meant to be extended and not to be configured directly.</p>
+          <p>
+            When a processor is frozen it cannot be unfrozen.
+            New processors working the same way can be created by calling the processor.
+          </p>
+          <p>
+            It’s possible to freeze processors explicitly by calling <code>.freeze()</code>.
+            Processors freeze automatically when <code>.parse()</code>, <code>.run()</code>, <code>.runSync()</code>,
+            <code>.stringify()</code>, <code>.process()</code>, or <code>.processSync()</code> are called.
+          </p>
+          <h6 id="returns-2"><a aria-hidden="true" tabindex="-1" href="#returns-2"><span class="icon icon-link"></span></a>Returns</h6>
+          <p>The current processor (<a href="#processor"><code>processor</code></a>).</p>
+          <h6 id="example-2"><a aria-hidden="true" tabindex="-1" href="#example-2"><span class="icon icon-link"></span></a>Example</h6>
+          <p>This example, <code>index.js</code>, shows how <code>rehype</code> prevents extensions to itself:</p>
+          <pre><code class="language-js"><span class="pl-k">import</span> <span class="pl-smi">rehypeParse</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>rehype-parse<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">rehypeStringify</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>rehype-stringify<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> {<span class="pl-smi">unified</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>unified<span class="pl-pds">'</span></span>
+
+<span class="pl-k">export</span> <span class="pl-k">const</span> <span class="pl-c1">rehype</span> <span class="pl-k">=</span> <span class="pl-en">unified</span>().<span class="pl-en">use</span>(rehypeParse).<span class="pl-en">use</span>(rehypeStringify).<span class="pl-en">freeze</span>()
+</code></pre>
+          <p>That processor can be used and configured like so:</p>
+          <pre><code class="language-js"><span class="pl-k">import</span> {<span class="pl-smi">rehype</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>rehype<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">rehypeFormat</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>rehype-format<span class="pl-pds">'</span></span>
+<span class="pl-c">// …</span>
+
+<span class="pl-en">rehype</span>()
+  .<span class="pl-en">use</span>(rehypeFormat)
+  <span class="pl-c">// …</span>
+</code></pre>
+          <p>
+            A similar looking example is broken as operates on the frozen interface.
+            If this behavior was allowed it would result in unexpected behavior so an error
+            is thrown.
+            <strong>This is not valid</strong>:
+          </p>
+          <pre><code class="language-js"><span class="pl-k">import</span> {<span class="pl-smi">rehype</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>rehype<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">rehypeFormat</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>rehype-format<span class="pl-pds">'</span></span>
+<span class="pl-c">// …</span>
+
+rehype
+  .<span class="pl-en">use</span>(rehypeFormat)
+  <span class="pl-c">// …</span>
+</code></pre>
+          <p>Yields:</p>
+          <pre><code class="language-txt">~/node_modules/unified/index.js:426
+    throw new Error(
+    ^
+
+Error: Cannot call `use` on a frozen processor.
+Create a new processor first, by calling it: use `processor()` instead of `processor`.
+    at assertUnfrozen (~/node_modules/unified/index.js:426:11)
+    at Function.use (~/node_modules/unified/index.js:165:5)
+    …
+</code></pre>
+          <h3 id="processorparsefile"><a aria-hidden="true" tabindex="-1" href="#processorparsefile"><span class="icon icon-link"></span></a><code>processor.parse(file)</code></h3>
+          <p>Parse text to a syntax tree.</p>
+          <blockquote>
+            <p>
+              👉 <strong>Note</strong>: <code>parse</code> freezes the processor if not already
+              <em><a href="#processorfreeze">frozen</a></em>.
+            </p>
+          </blockquote>
+          <blockquote>
+            <p>
+              👉 <strong>Note</strong>: <code>parse</code> performs the <a href="#overview">parse phase</a>, not the run phase
+              or other phases.
+            </p>
+          </blockquote>
+          <h6 id="parameters-1"><a aria-hidden="true" tabindex="-1" href="#parameters-1"><span class="icon icon-link"></span></a>Parameters</h6>
+          <ul>
+            <li>
+              <code>file</code> (<a href="https://github.com/vfile/vfile#compatible"><code>Compatible</code></a>) — file to parse; typically
+              <code>string</code> or <a href="https://github.com/vfile/vfile"><code>VFile</code></a>; any value accepted as <code>x</code> in <code>new VFile(x)</code>
+            </li>
+          </ul>
+          <h6 id="returns-3"><a aria-hidden="true" tabindex="-1" href="#returns-3"><span class="icon icon-link"></span></a>Returns</h6>
+          <p>Syntax tree representing <code>file</code> (<a href="https://github.com/syntax-tree/unist#node"><code>Node</code></a>).</p>
+          <h6 id="example-3"><a aria-hidden="true" tabindex="-1" href="#example-3"><span class="icon icon-link"></span></a>Example</h6>
+          <p>This example shows how <code>parse</code> can be used to create a tree from a file.</p>
+          <pre><code class="language-js"><span class="pl-k">import</span> <span class="pl-smi">remarkParse</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>remark-parse<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> {<span class="pl-smi">unified</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>unified<span class="pl-pds">'</span></span>
+
+<span class="pl-k">const</span> <span class="pl-c1">tree</span> <span class="pl-k">=</span> <span class="pl-en">unified</span>().<span class="pl-en">use</span>(remarkParse).<span class="pl-c1">parse</span>(<span class="pl-s"><span class="pl-pds">'</span># Hello world!<span class="pl-pds">'</span></span>)
+
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(tree)
+</code></pre>
+          <p>Yields:</p>
+          <pre><code class="language-js">{
+  type<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>root<span class="pl-pds">'</span></span>,
+  children<span class="pl-k">:</span> [
+    {type<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>heading<span class="pl-pds">'</span></span>, depth<span class="pl-k">:</span> <span class="pl-c1">1</span>, children<span class="pl-k">:</span> [<span class="pl-c1">Array</span>], position<span class="pl-k">:</span> [<span class="pl-c1">Object</span>]}
+  ],
+  position<span class="pl-k">:</span> {
+    start<span class="pl-k">:</span> {line<span class="pl-k">:</span> <span class="pl-c1">1</span>, column<span class="pl-k">:</span> <span class="pl-c1">1</span>, offset<span class="pl-k">:</span> <span class="pl-c1">0</span>},
+    end<span class="pl-k">:</span> {line<span class="pl-k">:</span> <span class="pl-c1">1</span>, column<span class="pl-k">:</span> <span class="pl-c1">15</span>, offset<span class="pl-k">:</span> <span class="pl-c1">14</span>}
+  }
+}
+</code></pre>
+          <h3 id="processorparser"><a aria-hidden="true" tabindex="-1" href="#processorparser"><span class="icon icon-link"></span></a><code>processor.parser</code></h3>
+          <p>Parser to use (<a href="#parser"><code>Parser</code></a>, optional).</p>
+          <h3 id="processorprocessfile-done"><a aria-hidden="true" tabindex="-1" href="#processorprocessfile-done"><span class="icon icon-link"></span></a><code>processor.process(file[, done])</code></h3>
+          <p>Process the given file as configured on the processor.</p>
+          <blockquote>
+            <p>
+              👉 <strong>Note</strong>: <code>process</code> freezes the processor if not already
+              <em><a href="#processorfreeze">frozen</a></em>.
+            </p>
+          </blockquote>
+          <blockquote>
+            <p>👉 <strong>Note</strong>: <code>process</code> performs the <a href="#overview">parse, run, and stringify
+phases</a>.</p>
+          </blockquote>
+          <h6 id="signatures-1"><a aria-hidden="true" tabindex="-1" href="#signatures-1"><span class="icon icon-link"></span></a>Signatures</h6>
+          <ul>
+            <li><code>processor.process(file, done)</code></li>
+            <li><code>Promise&#x3C;VFile> = processor.process(file?)</code></li>
+          </ul>
+          <h6 id="parameters-2"><a aria-hidden="true" tabindex="-1" href="#parameters-2"><span class="icon icon-link"></span></a>Parameters</h6>
+          <ul>
+            <li>
+              <code>file</code> (<a href="https://github.com/vfile/vfile#compatible"><code>Compatible</code></a>, optional) — file; typically
+              <code>string</code> or <a href="https://github.com/vfile/vfile"><code>VFile</code></a>; any value accepted as <code>x</code> in <code>new VFile(x)</code>
+            </li>
+            <li><code>done</code> (<a href="#processcallback"><code>ProcessCallback</code></a>, optional) — callback</li>
+          </ul>
+          <h6 id="returns-4"><a aria-hidden="true" tabindex="-1" href="#returns-4"><span class="icon icon-link"></span></a>Returns</h6>
+          <p>
+            Nothing if <code>done</code> is given (<code>undefined</code>).
+            Otherwise a promise, rejected with a fatal error or resolved with the
+            processed file (<a href="https://github.com/vfile/vfile"><code>Promise&#x3C;VFile></code></a>).
+          </p>
+          <p>
+            The parsed, transformed, and compiled value is available at <code>file.value</code> (see
+            note).
+          </p>
+          <blockquote>
+            <p>
+              👉 <strong>Note</strong>: unified typically compiles by serializing: most
+              compilers return <code>string</code> (or <code>Uint8Array</code>).
+              Some compilers, such as the one configured with
+              <a href="https://github.com/rehypejs/rehype-react"><code>rehype-react</code></a>, return other values (in this case, a React
+              tree).
+              If you’re using a compiler that doesn’t serialize, expect different result
+              values.
+            </p>
+            <p>
+              To register custom results in TypeScript, add them to
+              <a href="#compileresultmap"><code>CompileResultMap</code></a>.
+            </p>
+          </blockquote>
+          <h6 id="example-4"><a aria-hidden="true" tabindex="-1" href="#example-4"><span class="icon icon-link"></span></a>Example</h6>
+          <p>This example shows how <code>process</code> can be used to process a file:</p>
+          <pre><code class="language-js"><span class="pl-k">import</span> <span class="pl-smi">rehypeDocument</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>rehype-document<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">rehypeFormat</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>rehype-format<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">rehypeStringify</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>rehype-stringify<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">remarkParse</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>remark-parse<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">remarkRehype</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>remark-rehype<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> {<span class="pl-smi">unified</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>unified<span class="pl-pds">'</span></span>
+
+<span class="pl-k">const</span> <span class="pl-c1">file</span> <span class="pl-k">=</span> <span class="pl-k">await</span> <span class="pl-en">unified</span>()
+  .<span class="pl-en">use</span>(remarkParse)
+  .<span class="pl-en">use</span>(remarkRehype)
+  .<span class="pl-en">use</span>(rehypeDocument, {title<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>👋🌍<span class="pl-pds">'</span></span>})
+  .<span class="pl-en">use</span>(rehypeFormat)
+  .<span class="pl-en">use</span>(rehypeStringify)
+  .<span class="pl-en">process</span>(<span class="pl-s"><span class="pl-pds">'</span># Hello world!<span class="pl-pds">'</span></span>)
+
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-c1">String</span>(file))
+</code></pre>
+          <p>Yields:</p>
+          <pre><code class="language-html">&#x3C;!doctype html>
+&#x3C;<span class="pl-ent">html</span> <span class="pl-e">lang</span>=<span class="pl-s"><span class="pl-pds">"</span>en<span class="pl-pds">"</span></span>>
+  &#x3C;<span class="pl-ent">head</span>>
+    &#x3C;<span class="pl-ent">meta</span> <span class="pl-e">charset</span>=<span class="pl-s"><span class="pl-pds">"</span>utf-8<span class="pl-pds">"</span></span>>
+    &#x3C;<span class="pl-ent">title</span>>👋🌍&#x3C;/<span class="pl-ent">title</span>>
+    &#x3C;<span class="pl-ent">meta</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>viewport<span class="pl-pds">"</span></span> <span class="pl-e">content</span>=<span class="pl-s"><span class="pl-pds">"</span>width=device-width, initial-scale=1<span class="pl-pds">"</span></span>>
+  &#x3C;/<span class="pl-ent">head</span>>
+  &#x3C;<span class="pl-ent">body</span>>
+    &#x3C;<span class="pl-ent">h1</span>>Hello world!&#x3C;/<span class="pl-ent">h1</span>>
+  &#x3C;/<span class="pl-ent">body</span>>
+&#x3C;/<span class="pl-ent">html</span>>
+</code></pre>
+          <h3 id="processorprocesssyncfile"><a aria-hidden="true" tabindex="-1" href="#processorprocesssyncfile"><span class="icon icon-link"></span></a><code>processor.processSync(file)</code></h3>
+          <p>Process the given file as configured on the processor.</p>
+          <p>An error is thrown if asynchronous transforms are configured.</p>
+          <blockquote>
+            <p>
+              👉 <strong>Note</strong>: <code>processSync</code> freezes the processor if not already
+              <em><a href="#processorfreeze">frozen</a></em>.
+            </p>
+          </blockquote>
+          <blockquote>
+            <p>👉 <strong>Note</strong>: <code>processSync</code> performs the <a href="#overview">parse, run, and stringify
+phases</a>.</p>
+          </blockquote>
+          <h6 id="parameters-3"><a aria-hidden="true" tabindex="-1" href="#parameters-3"><span class="icon icon-link"></span></a>Parameters</h6>
+          <ul>
+            <li>
+              <code>file</code> (<a href="https://github.com/vfile/vfile#compatible"><code>Compatible</code></a>, optional) — file; typically
+              <code>string</code> or <a href="https://github.com/vfile/vfile"><code>VFile</code></a>; any value accepted as <code>x</code> in <code>new VFile(x)</code>
+            </li>
+          </ul>
+          <h6 id="returns-5"><a aria-hidden="true" tabindex="-1" href="#returns-5"><span class="icon icon-link"></span></a>Returns</h6>
+          <p>The processed file (<a href="https://github.com/vfile/vfile"><code>VFile</code></a>).</p>
+          <p>
+            The parsed, transformed, and compiled value is available at <code>file.value</code> (see
+            note).
+          </p>
+          <blockquote>
+            <p>
+              👉 <strong>Note</strong>: unified typically compiles by serializing: most
+              compilers return <code>string</code> (or <code>Uint8Array</code>).
+              Some compilers, such as the one configured with
+              <a href="https://github.com/rehypejs/rehype-react"><code>rehype-react</code></a>, return other values (in this case, a React
+              tree).
+              If you’re using a compiler that doesn’t serialize, expect different result
+              values.
+            </p>
+            <p>
+              To register custom results in TypeScript, add them to
+              <a href="#compileresultmap"><code>CompileResultMap</code></a>.
+            </p>
+          </blockquote>
+          <h6 id="example-5"><a aria-hidden="true" tabindex="-1" href="#example-5"><span class="icon icon-link"></span></a>Example</h6>
+          <p>
+            This example shows how <code>processSync</code> can be used to process a file, if all
+            transformers are synchronous.
+          </p>
+          <pre><code class="language-js"><span class="pl-k">import</span> <span class="pl-smi">rehypeDocument</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>rehype-document<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">rehypeFormat</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>rehype-format<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">rehypeStringify</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>rehype-stringify<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">remarkParse</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>remark-parse<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">remarkRehype</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>remark-rehype<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> {<span class="pl-smi">unified</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>unified<span class="pl-pds">'</span></span>
+
+<span class="pl-k">const</span> <span class="pl-c1">processor</span> <span class="pl-k">=</span> <span class="pl-en">unified</span>()
+  .<span class="pl-en">use</span>(remarkParse)
+  .<span class="pl-en">use</span>(remarkRehype)
+  .<span class="pl-en">use</span>(rehypeDocument, {title<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>👋🌍<span class="pl-pds">'</span></span>})
+  .<span class="pl-en">use</span>(rehypeFormat)
+  .<span class="pl-en">use</span>(rehypeStringify)
+
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-c1">String</span>(<span class="pl-smi">processor</span>.<span class="pl-en">processSync</span>(<span class="pl-s"><span class="pl-pds">'</span># Hello world!<span class="pl-pds">'</span></span>)))
+</code></pre>
+          <p>Yields:</p>
+          <pre><code class="language-html">&#x3C;!doctype html>
+&#x3C;<span class="pl-ent">html</span> <span class="pl-e">lang</span>=<span class="pl-s"><span class="pl-pds">"</span>en<span class="pl-pds">"</span></span>>
+  &#x3C;<span class="pl-ent">head</span>>
+    &#x3C;<span class="pl-ent">meta</span> <span class="pl-e">charset</span>=<span class="pl-s"><span class="pl-pds">"</span>utf-8<span class="pl-pds">"</span></span>>
+    &#x3C;<span class="pl-ent">title</span>>👋🌍&#x3C;/<span class="pl-ent">title</span>>
+    &#x3C;<span class="pl-ent">meta</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>viewport<span class="pl-pds">"</span></span> <span class="pl-e">content</span>=<span class="pl-s"><span class="pl-pds">"</span>width=device-width, initial-scale=1<span class="pl-pds">"</span></span>>
+  &#x3C;/<span class="pl-ent">head</span>>
+  &#x3C;<span class="pl-ent">body</span>>
+    &#x3C;<span class="pl-ent">h1</span>>Hello world!&#x3C;/<span class="pl-ent">h1</span>>
+  &#x3C;/<span class="pl-ent">body</span>>
+&#x3C;/<span class="pl-ent">html</span>>
+</code></pre>
+          <h3 id="processorruntree-file-done"><a aria-hidden="true" tabindex="-1" href="#processorruntree-file-done"><span class="icon icon-link"></span></a><code>processor.run(tree[, file][, done])</code></h3>
+          <p>Run <em><a href="#transformer">transformers</a></em> on a syntax tree.</p>
+          <blockquote>
+            <p>
+              👉 <strong>Note</strong>: <code>run</code> freezes the processor if not already
+              <em><a href="#processorfreeze">frozen</a></em>.
+            </p>
+          </blockquote>
+          <blockquote>
+            <p>👉 <strong>Note</strong>: <code>run</code> performs the <a href="#overview">run phase</a>, not other phases.</p>
+          </blockquote>
+          <h6 id="signatures-2"><a aria-hidden="true" tabindex="-1" href="#signatures-2"><span class="icon icon-link"></span></a>Signatures</h6>
+          <ul>
+            <li><code>processor.run(tree, done)</code></li>
+            <li><code>processor.run(tree, file, done)</code></li>
+            <li><code>Promise&#x3C;Node> = processor.run(tree, file?)</code></li>
+          </ul>
+          <h6 id="parameters-4"><a aria-hidden="true" tabindex="-1" href="#parameters-4"><span class="icon icon-link"></span></a>Parameters</h6>
+          <ul>
+            <li><code>tree</code> (<a href="https://github.com/syntax-tree/unist#node"><code>Node</code></a>) — tree to transform and inspect</li>
+            <li>
+              <code>file</code> (<a href="https://github.com/vfile/vfile#compatible"><code>Compatible</code></a>, optional) — file associated
+              with <code>node</code>; any value accepted as <code>x</code> in <code>new VFile(x)</code>
+            </li>
+            <li><code>done</code> (<a href="#runcallback"><code>RunCallback</code></a>, optional) — callback</li>
+          </ul>
+          <h6 id="returns-6"><a aria-hidden="true" tabindex="-1" href="#returns-6"><span class="icon icon-link"></span></a>Returns</h6>
+          <p>
+            Nothing if <code>done</code> is given (<code>undefined</code>).
+            Otherwise, a promise rejected with a fatal error or resolved with the
+            transformed tree (<a href="https://github.com/syntax-tree/unist#node"><code>Promise&#x3C;Node></code></a>).
+          </p>
+          <h6 id="example-6"><a aria-hidden="true" tabindex="-1" href="#example-6"><span class="icon icon-link"></span></a>Example</h6>
+          <p>This example shows how <code>run</code> can be used to transform a tree:</p>
+          <pre><code class="language-js"><span class="pl-k">import</span> <span class="pl-smi">remarkReferenceLinks</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>remark-reference-links<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> {<span class="pl-smi">unified</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>unified<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> {<span class="pl-smi">u</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>unist-builder<span class="pl-pds">'</span></span>
+
+<span class="pl-k">const</span> <span class="pl-c1">tree</span> <span class="pl-k">=</span> <span class="pl-en">u</span>(<span class="pl-s"><span class="pl-pds">'</span>root<span class="pl-pds">'</span></span>, [
+  <span class="pl-en">u</span>(<span class="pl-s"><span class="pl-pds">'</span>paragraph<span class="pl-pds">'</span></span>, [
+    <span class="pl-en">u</span>(<span class="pl-s"><span class="pl-pds">'</span>link<span class="pl-pds">'</span></span>, {href<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>https://example.com<span class="pl-pds">'</span></span>}, [<span class="pl-en">u</span>(<span class="pl-s"><span class="pl-pds">'</span>text<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Example Domain<span class="pl-pds">'</span></span>)])
+  ])
+])
+
+<span class="pl-k">const</span> <span class="pl-c1">changedTree</span> <span class="pl-k">=</span> <span class="pl-k">await</span> <span class="pl-en">unified</span>().<span class="pl-en">use</span>(remarkReferenceLinks).<span class="pl-en">run</span>(tree)
+
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(changedTree)
+</code></pre>
+          <p>Yields:</p>
+          <pre><code class="language-js">{
+  type<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>root<span class="pl-pds">'</span></span>,
+  children<span class="pl-k">:</span> [
+    {type<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>paragraph<span class="pl-pds">'</span></span>, children<span class="pl-k">:</span> [<span class="pl-c1">Array</span>]},
+    {type<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>definition<span class="pl-pds">'</span></span>, identifier<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>1<span class="pl-pds">'</span></span>, title<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">''</span></span>, url<span class="pl-k">:</span> <span class="pl-c1">undefined</span>}
+  ]
+}
+</code></pre>
+          <h3 id="processorrunsynctree-file"><a aria-hidden="true" tabindex="-1" href="#processorrunsynctree-file"><span class="icon icon-link"></span></a><code>processor.runSync(tree[, file])</code></h3>
+          <p>Run <em><a href="#transformer">transformers</a></em> on a syntax tree.</p>
+          <p>An error is thrown if asynchronous transforms are configured.</p>
+          <blockquote>
+            <p>
+              👉 <strong>Note</strong>: <code>runSync</code> freezes the processor if not already
+              <em><a href="#processorfreeze">frozen</a></em>.
+            </p>
+          </blockquote>
+          <blockquote>
+            <p>👉 <strong>Note</strong>: <code>runSync</code> performs the <a href="#overview">run phase</a>, not other phases.</p>
+          </blockquote>
+          <h6 id="parameters-5"><a aria-hidden="true" tabindex="-1" href="#parameters-5"><span class="icon icon-link"></span></a>Parameters</h6>
+          <ul>
+            <li><code>tree</code> (<a href="https://github.com/syntax-tree/unist#node"><code>Node</code></a>) — tree to transform and inspect</li>
+            <li>
+              <code>file</code> (<a href="https://github.com/vfile/vfile#compatible"><code>Compatible</code></a>, optional) — file associated
+              with <code>node</code>; any value accepted as <code>x</code> in <code>new VFile(x)</code>
+            </li>
+          </ul>
+          <h6 id="returns-7"><a aria-hidden="true" tabindex="-1" href="#returns-7"><span class="icon icon-link"></span></a>Returns</h6>
+          <p>Transformed tree (<a href="https://github.com/syntax-tree/unist#node"><code>Node</code></a>).</p>
+          <h3 id="processorstringifytree-file"><a aria-hidden="true" tabindex="-1" href="#processorstringifytree-file"><span class="icon icon-link"></span></a><code>processor.stringify(tree[, file])</code></h3>
+          <p>Compile a syntax tree.</p>
+          <blockquote>
+            <p>
+              👉 <strong>Note</strong>: <code>stringify</code> freezes the processor if not already
+              <em><a href="#processorfreeze">frozen</a></em>.
+            </p>
+          </blockquote>
+          <blockquote>
+            <p>
+              👉 <strong>Note</strong>: <code>stringify</code> performs the <a href="#overview">stringify phase</a>, not the run
+              phase or other phases.
+            </p>
+          </blockquote>
+          <h6 id="parameters-6"><a aria-hidden="true" tabindex="-1" href="#parameters-6"><span class="icon icon-link"></span></a>Parameters</h6>
+          <ul>
+            <li><code>tree</code> (<a href="https://github.com/syntax-tree/unist#node"><code>Node</code></a>) — tree to compile</li>
+            <li>
+              <code>file</code> (<a href="https://github.com/vfile/vfile#compatible"><code>Compatible</code></a>, optional) — file associated
+              with <code>node</code>; any value accepted as <code>x</code> in <code>new VFile(x)</code>
+            </li>
+          </ul>
+          <h6 id="returns-8"><a aria-hidden="true" tabindex="-1" href="#returns-8"><span class="icon icon-link"></span></a>Returns</h6>
+          <p>Textual representation of the tree (<code>Uint8Array</code> or <code>string</code>, see note).</p>
+          <blockquote>
+            <p>
+              👉 <strong>Note</strong>: unified typically compiles by serializing: most compilers
+              return <code>string</code> (or <code>Uint8Array</code>).
+              Some compilers, such as the one configured with
+              <a href="https://github.com/rehypejs/rehype-react"><code>rehype-react</code></a>, return other values (in this case, a
+              React tree).
+              If you’re using a compiler that doesn’t serialize, expect different
+              result values.
+            </p>
+            <p>
+              To register custom results in TypeScript, add them to
+              <a href="#compileresultmap"><code>CompileResultMap</code></a>.
+            </p>
+          </blockquote>
+          <h6 id="example-7"><a aria-hidden="true" tabindex="-1" href="#example-7"><span class="icon icon-link"></span></a>Example</h6>
+          <p>This example shows how <code>stringify</code> can be used to serialize a syntax tree:</p>
+          <pre><code class="language-js"><span class="pl-k">import</span> {<span class="pl-smi">h</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>hastscript<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">rehypeStringify</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>rehype-stringify<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> {<span class="pl-smi">unified</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>unified<span class="pl-pds">'</span></span>
+
+<span class="pl-k">const</span> <span class="pl-c1">tree</span> <span class="pl-k">=</span> <span class="pl-en">h</span>(<span class="pl-s"><span class="pl-pds">'</span>h1<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Hello world!<span class="pl-pds">'</span></span>)
+
+<span class="pl-k">const</span> <span class="pl-c1">document</span> <span class="pl-k">=</span> <span class="pl-en">unified</span>().<span class="pl-en">use</span>(rehypeStringify).<span class="pl-c1">stringify</span>(tree)
+
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-c1">document</span>)
+</code></pre>
+          <p>Yields:</p>
+          <pre><code class="language-html">&#x3C;<span class="pl-ent">h1</span>>Hello world!&#x3C;/<span class="pl-ent">h1</span>>
+</code></pre>
+          <h3 id="processoruseplugin-options"><a aria-hidden="true" tabindex="-1" href="#processoruseplugin-options"><span class="icon icon-link"></span></a><code>processor.use(plugin[, options])</code></h3>
+          <p>Configure the processor to use a plugin, a list of usable values, or a preset.</p>
+          <p>
+            If the processor is already using a plugin, the previous plugin configuration
+            is changed based on the options that are passed in.
+            In other words, the plugin is not added a second time.
+          </p>
+          <blockquote>
+            <p>
+              👉 <strong>Note</strong>: <code>use</code> cannot be called on <a href="#processorfreeze"><em>frozen</em></a> processors.
+              Call the processor first to create a new unfrozen processor.
+            </p>
+          </blockquote>
+          <h6 id="signatures-3"><a aria-hidden="true" tabindex="-1" href="#signatures-3"><span class="icon icon-link"></span></a>Signatures</h6>
+          <ul>
+            <li><code>processor.use(preset?)</code></li>
+            <li><code>processor.use(list)</code></li>
+            <li><code>processor.use(plugin[, ...parameters])</code></li>
+          </ul>
+          <h6 id="parameters-7"><a aria-hidden="true" tabindex="-1" href="#parameters-7"><span class="icon icon-link"></span></a>Parameters</h6>
+          <ul>
+            <li><code>preset</code> (<a href="#preset"><code>Preset</code></a>) — plugins and settings</li>
+            <li><code>list</code> (<a href="#pluggablelist"><code>PluggableList</code></a>) — list of usable things</li>
+            <li><code>plugin</code> (<a href="#plugin"><code>Plugin</code></a>) — plugin</li>
+            <li>
+              <code>parameters</code> (<code>Array&#x3C;unknown></code>) — configuration for <code>plugin</code>, typically a
+              single options object
+            </li>
+          </ul>
+          <h6 id="returns-9"><a aria-hidden="true" tabindex="-1" href="#returns-9"><span class="icon icon-link"></span></a>Returns</h6>
+          <p>Current processor (<a href="#processor"><code>processor</code></a>).</p>
+          <h6 id="example-8"><a aria-hidden="true" tabindex="-1" href="#example-8"><span class="icon icon-link"></span></a>Example</h6>
+          <p>
+            There are many ways to pass plugins to <code>.use()</code>.
+            This example gives an overview:
+          </p>
+          <pre><code class="language-js"><span class="pl-k">import</span> {<span class="pl-smi">unified</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>unified<span class="pl-pds">'</span></span>
+
+<span class="pl-en">unified</span>()
+  <span class="pl-c">// Plugin with options:</span>
+  .<span class="pl-en">use</span>(pluginA, {x<span class="pl-k">:</span> <span class="pl-c1">true</span>, y<span class="pl-k">:</span> <span class="pl-c1">true</span>})
+  <span class="pl-c">// Passing the same plugin again merges configuration (to `{x: true, y: false, z: true}`):</span>
+  .<span class="pl-en">use</span>(pluginA, {y<span class="pl-k">:</span> <span class="pl-c1">false</span>, z<span class="pl-k">:</span> <span class="pl-c1">true</span>})
+  <span class="pl-c">// Plugins:</span>
+  .<span class="pl-en">use</span>([pluginB, pluginC])
+  <span class="pl-c">// Two plugins, the second with options:</span>
+  .<span class="pl-en">use</span>([pluginD, [pluginE, {}]])
+  <span class="pl-c">// Preset with plugins and settings:</span>
+  .<span class="pl-en">use</span>({plugins<span class="pl-k">:</span> [pluginF, [pluginG, {}]], settings<span class="pl-k">:</span> {position<span class="pl-k">:</span> <span class="pl-c1">false</span>}})
+  <span class="pl-c">// Settings only:</span>
+  .<span class="pl-en">use</span>({settings<span class="pl-k">:</span> {position<span class="pl-k">:</span> <span class="pl-c1">false</span>}})
+</code></pre>
+          <h3 id="compileresultmap"><a aria-hidden="true" tabindex="-1" href="#compileresultmap"><span class="icon icon-link"></span></a><code>CompileResultMap</code></h3>
+          <p>Interface of known results from compilers (TypeScript type).</p>
+          <p>
+            Normally, compilers result in text (<a href="https://github.com/vfile/vfile#value"><code>Value</code></a> of <code>vfile</code>).
+            When you compile to something else, such as a React node (as in,
+            <code>rehype-react</code>), you can augment this interface to include that type.
+          </p>
+          <pre><code class="language-ts"><span class="pl-k">import</span> <span class="pl-k">type</span> {<span class="pl-smi">ReactNode</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>somewhere<span class="pl-pds">'</span></span>
+
+<span class="pl-k">declare</span> <span class="pl-k">module</span> <span class="pl-s"><span class="pl-pds">'</span>unified<span class="pl-pds">'</span></span> {
+  <span class="pl-k">interface</span> <span class="pl-en">CompileResultMap</span> {
+    <span class="pl-c">// Register a new result (value is used, key should match it).</span>
+    <span class="pl-v">ReactNode</span><span class="pl-k">:</span> <span class="pl-en">ReactNode</span>
+  }
+}
+
+<span class="pl-k">export</span> {} <span class="pl-c">// You may not need this, but it makes sure the file is a module.</span>
+</code></pre>
+          <p>Use <a href="#compileresults"><code>CompileResults</code></a> to access the values.</p>
+          <h6 id="type"><a aria-hidden="true" tabindex="-1" href="#type"><span class="icon icon-link"></span></a>Type</h6>
+          <pre><code class="language-ts"><span class="pl-k">interface</span> <span class="pl-en">CompileResultMap</span> {
+  <span class="pl-c">// Note: if `Value` from `VFile` is changed, this should too.</span>
+  <span class="pl-v">Uint8Array</span><span class="pl-k">:</span> <span class="pl-en">Uint8Array</span>
+  <span class="pl-v">string</span><span class="pl-k">:</span> <span class="pl-c1">string</span>
+}
+</code></pre>
+          <h3 id="compileresults"><a aria-hidden="true" tabindex="-1" href="#compileresults"><span class="icon icon-link"></span></a><code>CompileResults</code></h3>
+          <p>Acceptable results from compilers (TypeScript type).</p>
+          <p>
+            To register custom results, add them to
+            <a href="#compileresultmap"><code>CompileResultMap</code></a>.
+          </p>
+          <h6 id="type-1"><a aria-hidden="true" tabindex="-1" href="#type-1"><span class="icon icon-link"></span></a>Type</h6>
+          <pre><code class="language-ts"><span class="pl-k">type</span> <span class="pl-en">CompileResults</span> <span class="pl-k">=</span> <span class="pl-en">CompileResultMap</span>[<span class="pl-k">keyof</span> <span class="pl-en">CompileResultMap</span>]
+</code></pre>
+          <h3 id="compiler"><a aria-hidden="true" tabindex="-1" href="#compiler"><span class="icon icon-link"></span></a><code>Compiler</code></h3>
+          <p>
+            A <strong>compiler</strong> handles the compiling of a syntax tree to something else
+            (in most cases, text) (TypeScript type).
+          </p>
+          <p>
+            It is used in the stringify phase and called with a <a href="https://github.com/syntax-tree/unist#node"><code>Node</code></a>
+            and <a href="https://github.com/vfile/vfile"><code>VFile</code></a> representation of the document to compile.
+            It should return the textual representation of the given tree (typically
+            <code>string</code>).
+          </p>
+          <blockquote>
+            <p>
+              👉 <strong>Note</strong>: unified typically compiles by serializing: most compilers
+              return <code>string</code> (or <code>Uint8Array</code>).
+              Some compilers, such as the one configured with
+              <a href="https://github.com/rehypejs/rehype-react"><code>rehype-react</code></a>, return other values (in this case, a
+              React tree).
+              If you’re using a compiler that doesn’t serialize, expect different
+              result values.
+            </p>
+            <p>
+              To register custom results in TypeScript, add them to
+              <a href="#compileresultmap"><code>CompileResultMap</code></a>.
+            </p>
+          </blockquote>
+          <h6 id="type-2"><a aria-hidden="true" tabindex="-1" href="#type-2"><span class="icon icon-link"></span></a>Type</h6>
+          <pre><code class="language-ts"><span class="pl-k">type</span> <span class="pl-en">Compiler</span>&#x3C;
+  <span class="pl-en">Tree</span> <span class="pl-k">extends</span> <span class="pl-en">Node</span> <span class="pl-k">=</span> <span class="pl-en">Node</span>,
+  <span class="pl-en">Result</span> <span class="pl-k">extends</span> <span class="pl-en">CompileResults</span> <span class="pl-k">=</span> <span class="pl-en">CompileResults</span>
+> <span class="pl-k">=</span> (<span class="pl-v">tree</span><span class="pl-k">:</span> <span class="pl-en">Tree</span>, <span class="pl-v">file</span><span class="pl-k">:</span> <span class="pl-en">VFile</span>) <span class="pl-k">=></span> <span class="pl-en">Result</span>
+</code></pre>
+          <h3 id="data"><a aria-hidden="true" tabindex="-1" href="#data"><span class="icon icon-link"></span></a><code>Data</code></h3>
+          <p>Interface of known data that can be supported by all plugins (TypeScript type).</p>
+          <p>
+            Typically, options can be given to a specific plugin, but sometimes it makes
+            sense to have information shared with several plugins.
+            For example, a list of HTML elements that are self-closing, which is needed
+            during all phases.
+          </p>
+          <p>To type this, do something like:</p>
+          <pre><code class="language-ts"><span class="pl-k">declare</span> <span class="pl-k">module</span> <span class="pl-s"><span class="pl-pds">'</span>unified<span class="pl-pds">'</span></span> {
+  <span class="pl-k">interface</span> <span class="pl-en">Data</span> {
+    <span class="pl-v">htmlVoidElements</span><span class="pl-k">?:</span> <span class="pl-en">Array</span>&#x3C;<span class="pl-c1">string</span>> <span class="pl-k">|</span> <span class="pl-c1">undefined</span>
+  }
+}
+
+<span class="pl-k">export</span> {} <span class="pl-c">// You may not need this, but it makes sure the file is a module.</span>
+</code></pre>
+          <h6 id="type-3"><a aria-hidden="true" tabindex="-1" href="#type-3"><span class="icon icon-link"></span></a>Type</h6>
+          <pre><code class="language-ts"><span class="pl-k">interface</span> <span class="pl-en">Data</span> {
+  <span class="pl-v">settings</span><span class="pl-k">?:</span> <span class="pl-en">Settings</span> <span class="pl-k">|</span> <span class="pl-c1">undefined</span>
+}
+</code></pre>
+          <p>See <a href="#settings"><code>Settings</code></a> for more info.</p>
+          <h3 id="parser"><a aria-hidden="true" tabindex="-1" href="#parser"><span class="icon icon-link"></span></a><code>Parser</code></h3>
+          <p>A <strong>parser</strong> handles the parsing of text to a syntax tree (TypeScript type).</p>
+          <p>
+            It is used in the parse phase and is called with a <code>string</code> and
+            <a href="https://github.com/vfile/vfile"><code>VFile</code></a> of the document to parse.
+            It must return the syntax tree representation of the given file
+            (<a href="https://github.com/syntax-tree/unist#node"><code>Node</code></a>).
+          </p>
+          <h6 id="type-4"><a aria-hidden="true" tabindex="-1" href="#type-4"><span class="icon icon-link"></span></a>Type</h6>
+          <pre><code class="language-ts"><span class="pl-k">type</span> <span class="pl-en">Parser</span>&#x3C;<span class="pl-en">Tree</span> <span class="pl-k">extends</span> <span class="pl-en">Node</span> <span class="pl-k">=</span> <span class="pl-en">Node</span>> <span class="pl-k">=</span> (<span class="pl-v">document</span><span class="pl-k">:</span> <span class="pl-c1">string</span>, <span class="pl-v">file</span><span class="pl-k">:</span> <span class="pl-en">VFile</span>) <span class="pl-k">=></span> <span class="pl-en">Tree</span>
+</code></pre>
+          <h3 id="pluggable"><a aria-hidden="true" tabindex="-1" href="#pluggable"><span class="icon icon-link"></span></a><code>Pluggable</code></h3>
+          <p>Union of the different ways to add plugins and settings (TypeScript type).</p>
+          <h6 id="type-5"><a aria-hidden="true" tabindex="-1" href="#type-5"><span class="icon icon-link"></span></a>Type</h6>
+          <pre><code class="language-ts"><span class="pl-k">type</span> <span class="pl-en">Pluggable</span> <span class="pl-k">=</span>
+  <span class="pl-k">|</span> <span class="pl-en">Plugin</span>&#x3C;<span class="pl-en">Array</span>&#x3C;<span class="pl-c1">any</span>>, <span class="pl-c1">any</span>, <span class="pl-c1">any</span>>
+  <span class="pl-k">|</span> <span class="pl-en">PluginTuple</span>&#x3C;<span class="pl-en">Array</span>&#x3C;<span class="pl-c1">any</span>>, <span class="pl-c1">any</span>, <span class="pl-c1">any</span>>
+  <span class="pl-k">|</span> <span class="pl-en">Preset</span>
+</code></pre>
+          <p>
+            See <a href="#plugin"><code>Plugin</code></a>, <a href="#plugintuple"><code>PluginTuple</code></a>,
+            and <a href="#preset"><code>Preset</code></a> for more info.
+          </p>
+          <h3 id="pluggablelist"><a aria-hidden="true" tabindex="-1" href="#pluggablelist"><span class="icon icon-link"></span></a><code>PluggableList</code></h3>
+          <p>List of plugins and presets (TypeScript type).</p>
+          <h6 id="type-6"><a aria-hidden="true" tabindex="-1" href="#type-6"><span class="icon icon-link"></span></a>Type</h6>
+          <pre><code class="language-ts"><span class="pl-k">type</span> <span class="pl-en">PluggableList</span> <span class="pl-k">=</span> <span class="pl-en">Array</span>&#x3C;<span class="pl-en">Pluggable</span>>
+</code></pre>
+          <p>See <a href="#pluggable"><code>Pluggable</code></a> for more info.</p>
+          <h3 id="plugin"><a aria-hidden="true" tabindex="-1" href="#plugin"><span class="icon icon-link"></span></a><code>Plugin</code></h3>
+          <p>Single plugin (TypeScript type).</p>
+          <p>Plugins configure the processors they are applied on in the following ways:</p>
+          <ul>
+            <li>
+              they change the processor, such as the parser, the compiler, or by
+              configuring data
+            </li>
+            <li>they specify how to handle trees and files</li>
+          </ul>
+          <p>
+            In practice, they are functions that can receive options and configure the
+            processor (<code>this</code>).
+          </p>
+          <blockquote>
+            <p>
+              👉 <strong>Note</strong>: plugins are called when the processor is <em>frozen</em>, not when they
+              are applied.
+            </p>
+          </blockquote>
+          <h6 id="type-7"><a aria-hidden="true" tabindex="-1" href="#type-7"><span class="icon icon-link"></span></a>Type</h6>
+          <pre><code class="language-ts"><span class="pl-k">type</span> <span class="pl-en">Plugin</span>&#x3C;
+  <span class="pl-en">PluginParameters</span> <span class="pl-k">extends</span> <span class="pl-c1">unknown</span>[] <span class="pl-k">=</span> [],
+  <span class="pl-en">Input</span> <span class="pl-k">extends</span> <span class="pl-en">Node</span> <span class="pl-k">|</span> <span class="pl-c1">string</span> <span class="pl-k">|</span> <span class="pl-c1">undefined</span> <span class="pl-k">=</span> <span class="pl-en">Node</span>,
+  <span class="pl-en">Output</span> <span class="pl-k">=</span> <span class="pl-en">Input</span>
+> <span class="pl-k">=</span> (
+  <span class="pl-c1">this</span><span class="pl-k">:</span> <span class="pl-en">Processor</span>,
+  <span class="pl-k">...</span><span class="pl-v">parameters</span><span class="pl-k">:</span> <span class="pl-en">PluginParameters</span>
+) <span class="pl-k">=></span> <span class="pl-en">Input</span> <span class="pl-k">extends</span> <span class="pl-c1">string</span> <span class="pl-c">// Parser.</span>
+  <span class="pl-k">?</span> <span class="pl-en">Output</span> <span class="pl-k">extends</span> <span class="pl-en">Node</span> <span class="pl-k">|</span> <span class="pl-c1">undefined</span>
+    <span class="pl-k">?</span> <span class="pl-c1">undefined</span> <span class="pl-k">|</span> <span class="pl-c1">void</span>
+    <span class="pl-k">:</span> <span class="pl-c1">never</span>
+  <span class="pl-k">:</span> <span class="pl-en">Output</span> <span class="pl-k">extends</span> <span class="pl-en">CompileResults</span> <span class="pl-c">// Compiler.</span>
+  <span class="pl-k">?</span> <span class="pl-en">Input</span> <span class="pl-k">extends</span> <span class="pl-en">Node</span> <span class="pl-k">|</span> <span class="pl-c1">undefined</span>
+    <span class="pl-k">?</span> <span class="pl-c1">undefined</span> <span class="pl-k">|</span> <span class="pl-c1">void</span>
+    <span class="pl-k">:</span> <span class="pl-c1">never</span>
+  <span class="pl-k">:</span> <span class="pl-c">// Inspect/transform.</span>
+      <span class="pl-k">|</span> <span class="pl-en">Transformer</span>&#x3C;
+          <span class="pl-en">Input</span> <span class="pl-k">extends</span> <span class="pl-en">Node</span> <span class="pl-k">?</span> <span class="pl-en">Input</span> <span class="pl-k">:</span> <span class="pl-en">Node</span>,
+          <span class="pl-en">Output</span> <span class="pl-k">extends</span> <span class="pl-en">Node</span> <span class="pl-k">?</span> <span class="pl-en">Output</span> <span class="pl-k">:</span> <span class="pl-en">Node</span>
+        >
+      <span class="pl-k">|</span> <span class="pl-c1">undefined</span>
+      <span class="pl-k">|</span> <span class="pl-c1">void</span>
+</code></pre>
+          <p>See <a href="#transformer"><code>Transformer</code></a> for more info.</p>
+          <h6 id="example-9"><a aria-hidden="true" tabindex="-1" href="#example-9"><span class="icon icon-link"></span></a>Example</h6>
+          <p><code>move.js</code>:</p>
+          <pre><code class="language-js"><span class="pl-c">/**</span>
+<span class="pl-c"> * @typedef Options</span>
+<span class="pl-c"> *   Configuration (required).</span>
+<span class="pl-c"> * @property {string} extname</span>
+<span class="pl-c"> *   File extension to use (must start with `.`).</span>
+<span class="pl-c"> */</span>
+
+<span class="pl-c">/** @type {import('unified').Plugin&#x3C;[Options]>} */</span>
+<span class="pl-k">export</span> <span class="pl-k">function</span> <span class="pl-en">move</span>(<span class="pl-smi">options</span>) {
+  <span class="pl-k">if</span> (<span class="pl-k">!</span>options <span class="pl-k">||</span> <span class="pl-k">!</span><span class="pl-smi">options</span>.<span class="pl-smi">extname</span>) {
+    <span class="pl-k">throw</span> <span class="pl-k">new</span> <span class="pl-en">Error</span>(<span class="pl-s"><span class="pl-pds">'</span>Missing `options.extname`<span class="pl-pds">'</span></span>)
+  }
+
+  <span class="pl-k">return</span> <span class="pl-k">function</span> (<span class="pl-smi">_</span>, <span class="pl-smi">file</span>) {
+    <span class="pl-k">if</span> (<span class="pl-smi">file</span>.<span class="pl-smi">extname</span> <span class="pl-k">&#x26;&#x26;</span> <span class="pl-smi">file</span>.<span class="pl-smi">extname</span> <span class="pl-k">!==</span> <span class="pl-smi">options</span>.<span class="pl-smi">extname</span>) {
+      <span class="pl-smi">file</span>.<span class="pl-smi">extname</span> <span class="pl-k">=</span> <span class="pl-smi">options</span>.<span class="pl-smi">extname</span>
+    }
+  }
+}
+</code></pre>
+          <p><code>example.md</code>:</p>
+          <pre><code class="language-markdown"><span class="pl-mh"># <span class="pl-en">Hello, world!</span></span>
+</code></pre>
+          <p><code>example.js</code>:</p>
+          <pre><code class="language-js"><span class="pl-k">import</span> <span class="pl-smi">rehypeStringify</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>rehype-stringify<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">remarkParse</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>remark-parse<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">remarkRehype</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>remark-rehype<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> {<span class="pl-smi">read</span>, <span class="pl-smi">write</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>to-vfile<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> {<span class="pl-smi">unified</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>unified<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> {<span class="pl-smi">reporter</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>vfile-reporter<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> {<span class="pl-smi">move</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>./move.js<span class="pl-pds">'</span></span>
+
+<span class="pl-k">const</span> <span class="pl-c1">file</span> <span class="pl-k">=</span> <span class="pl-k">await</span> <span class="pl-en">unified</span>()
+  .<span class="pl-en">use</span>(remarkParse)
+  .<span class="pl-en">use</span>(remarkRehype)
+  .<span class="pl-en">use</span>(move, {extname<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>.html<span class="pl-pds">'</span></span>})
+  .<span class="pl-en">use</span>(rehypeStringify)
+  .<span class="pl-en">process</span>(<span class="pl-k">await</span> <span class="pl-en">read</span>(<span class="pl-s"><span class="pl-pds">'</span>example.md<span class="pl-pds">'</span></span>))
+
+<span class="pl-en">console</span>.<span class="pl-c1">error</span>(<span class="pl-en">reporter</span>(file))
+<span class="pl-k">await</span> <span class="pl-en">write</span>(file) <span class="pl-c">// Written to `example.html`.</span>
+</code></pre>
+          <p>Yields:</p>
+          <pre><code class="language-txt">example.md: no issues found
+</code></pre>
+          <p>…and in <code>example.html</code>:</p>
+          <pre><code class="language-html">&#x3C;<span class="pl-ent">h1</span>>Hello, world!&#x3C;/<span class="pl-ent">h1</span>>
+</code></pre>
+          <h3 id="plugintuple"><a aria-hidden="true" tabindex="-1" href="#plugintuple"><span class="icon icon-link"></span></a><code>PluginTuple</code></h3>
+          <p>Tuple of a plugin and its configuration (TypeScript type).</p>
+          <p>The first item is a plugin, the rest are its parameters.</p>
+          <h6 id="type-8"><a aria-hidden="true" tabindex="-1" href="#type-8"><span class="icon icon-link"></span></a>Type</h6>
+          <pre><code class="language-ts"><span class="pl-k">type</span> <span class="pl-en">PluginTuple</span>&#x3C;
+  <span class="pl-en">TupleParameters</span> <span class="pl-k">extends</span> <span class="pl-c1">unknown</span>[] <span class="pl-k">=</span> [],
+  <span class="pl-en">Input</span> <span class="pl-k">extends</span> <span class="pl-en">Node</span> <span class="pl-k">|</span> <span class="pl-c1">string</span> <span class="pl-k">|</span> <span class="pl-c1">undefined</span> <span class="pl-k">=</span> <span class="pl-c1">undefined</span>,
+  <span class="pl-en">Output</span> <span class="pl-k">=</span> <span class="pl-c1">undefined</span>
+> <span class="pl-k">=</span> [
+  <span class="pl-en">plugin</span>: <span class="pl-en">Plugin</span>&#x3C;<span class="pl-en">TupleParameters</span>, <span class="pl-en">Input</span>, <span class="pl-en">Output</span>>,
+  <span class="pl-k">...</span><span class="pl-en">parameters</span>: <span class="pl-en">TupleParameters</span>
+]
+</code></pre>
+          <p>See <a href="#plugin"><code>Plugin</code></a> for more info.</p>
+          <h3 id="preset"><a aria-hidden="true" tabindex="-1" href="#preset"><span class="icon icon-link"></span></a><code>Preset</code></h3>
+          <p>Sharable configuration (TypeScript type).</p>
+          <p>They can contain plugins and settings.</p>
+          <h6 id="fields"><a aria-hidden="true" tabindex="-1" href="#fields"><span class="icon icon-link"></span></a>Fields</h6>
+          <ul>
+            <li>
+              <code>plugins</code> (<a href="#pluggablelist"><code>PluggableList</code></a>, optional)
+              — list of plugins and presets
+            </li>
+            <li>
+              <code>settings</code> (<a href="#data"><code>Data</code></a>, optional)
+              — shared settings for parsers and compilers
+            </li>
+          </ul>
+          <h6 id="example-10"><a aria-hidden="true" tabindex="-1" href="#example-10"><span class="icon icon-link"></span></a>Example</h6>
+          <p><code>preset.js</code>:</p>
+          <pre><code class="language-js"><span class="pl-k">import</span> <span class="pl-smi">remarkCommentConfig</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>remark-comment-config<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">remarkLicense</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>remark-license<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">remarkPresetLintConsistent</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>remark-preset-lint-consistent<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">remarkPresetLintRecommended</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>remark-preset-lint-recommended<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">remarkToc</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>remark-toc<span class="pl-pds">'</span></span>
+
+<span class="pl-c">/** @type {import('unified').Preset} */</span>
+<span class="pl-k">const</span> <span class="pl-c1">preset</span> <span class="pl-k">=</span> {
+  plugins<span class="pl-k">:</span> [
+    remarkPresetLintRecommended,
+    remarkPresetLintConsistent,
+    remarkCommentConfig,
+    [remarkToc, {maxDepth<span class="pl-k">:</span> <span class="pl-c1">3</span>, tight<span class="pl-k">:</span> <span class="pl-c1">true</span>}],
+    remarkLicense
+  ]
+  settings<span class="pl-k">:</span> {bullet<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>*<span class="pl-pds">'</span></span>, emphasis<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>*<span class="pl-pds">'</span></span>, fences<span class="pl-k">:</span> <span class="pl-c1">true</span>},
+}
+
+<span class="pl-k">export</span> <span class="pl-c1">default</span> <span class="pl-smi">preset</span>
+</code></pre>
+          <p><code>example.md</code>:</p>
+          <pre><code class="language-markdown"><span class="pl-mh"># <span class="pl-en">Hello, world!</span></span>
+
+<span class="pl-s">_</span>Emphasis<span class="pl-s">_</span> and <span class="pl-s">**</span>importance<span class="pl-s">**</span>.
+
+<span class="pl-mh">## <span class="pl-en">Table of contents</span></span>
+
+<span class="pl-mh">## <span class="pl-en">API</span></span>
+
+<span class="pl-mh">## <span class="pl-en">License</span></span>
+</code></pre>
+          <p><code>example.js</code>:</p>
+          <pre><code class="language-js"><span class="pl-k">import</span> {<span class="pl-smi">remark</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>remark<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> {<span class="pl-smi">read</span>, <span class="pl-smi">write</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>to-vfile<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> {<span class="pl-smi">reporter</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>vfile-reporter<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">preset</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>./preset.js<span class="pl-pds">'</span></span>
+
+<span class="pl-k">const</span> <span class="pl-c1">file</span> <span class="pl-k">=</span> <span class="pl-k">await</span> <span class="pl-en">remark</span>()
+  .<span class="pl-en">use</span>(preset)
+  .<span class="pl-en">process</span>(<span class="pl-k">await</span> <span class="pl-en">read</span>(<span class="pl-s"><span class="pl-pds">'</span>example.md<span class="pl-pds">'</span></span>))
+
+<span class="pl-en">console</span>.<span class="pl-c1">error</span>(<span class="pl-en">reporter</span>(file))
+<span class="pl-k">await</span> <span class="pl-en">write</span>(file)
+</code></pre>
+          <p>Yields:</p>
+          <pre><code class="language-txt">example.md: no issues found
+</code></pre>
+          <p><code>example.md</code> now contains:</p>
+          <pre><code class="language-markdown"><span class="pl-mh"># <span class="pl-en">Hello, world!</span></span>
+
+<span class="pl-s">*</span>Emphasis<span class="pl-s">*</span> and <span class="pl-s">**</span>importance<span class="pl-s">**</span>.
+
+<span class="pl-mh">## <span class="pl-en">Table of contents</span></span>
+
+<span class="pl-v">*</span>   <span class="pl-s">[</span>API<span class="pl-s">](<span class="pl-corl">#api</span>)</span>
+<span class="pl-v">*</span>   <span class="pl-s">[</span>License<span class="pl-s">](<span class="pl-corl">#license</span>)</span>
+
+<span class="pl-mh">## <span class="pl-en">API</span></span>
+
+<span class="pl-mh">## <span class="pl-en">License</span></span>
+
+<span class="pl-s">[</span>MIT<span class="pl-s">](<span class="pl-corl">license</span>)</span> © <span class="pl-s">[</span>Titus Wormer<span class="pl-s">](<span class="pl-corl">https://wooorm.com</span>)</span>
+</code></pre>
+          <h3 id="processcallback"><a aria-hidden="true" tabindex="-1" href="#processcallback"><span class="icon icon-link"></span></a><code>ProcessCallback</code></h3>
+          <p>Callback called when the process is done (TypeScript type).</p>
+          <p>Called with either an error or a result.</p>
+          <h6 id="parameters-8"><a aria-hidden="true" tabindex="-1" href="#parameters-8"><span class="icon icon-link"></span></a>Parameters</h6>
+          <ul>
+            <li>
+              <code>error</code> (<code>Error</code>, optional)
+              — fatal error
+            </li>
+            <li>
+              <code>file</code> (<a href="https://github.com/vfile/vfile"><code>VFile</code></a>, optional)
+              — processed file
+            </li>
+          </ul>
+          <h6 id="returns-10"><a aria-hidden="true" tabindex="-1" href="#returns-10"><span class="icon icon-link"></span></a>Returns</h6>
+          <p>Nothing (<code>undefined</code>).</p>
+          <h6 id="example-11"><a aria-hidden="true" tabindex="-1" href="#example-11"><span class="icon icon-link"></span></a>Example</h6>
+          <p>This example shows how <code>process</code> can be used to process a file with a callback.</p>
+          <pre><code class="language-js"><span class="pl-k">import</span> <span class="pl-smi">remarkGithub</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>remark-github<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">remarkParse</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>remark-parse<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> <span class="pl-smi">remarkStringify</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>remark-stringify<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> {<span class="pl-smi">unified</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>unified<span class="pl-pds">'</span></span>
+<span class="pl-k">import</span> {<span class="pl-smi">reporter</span>} <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>vfile-reporter<span class="pl-pds">'</span></span>
+
+<span class="pl-en">unified</span>()
+  .<span class="pl-en">use</span>(remarkParse)
+  .<span class="pl-en">use</span>(remarkGithub)
+  .<span class="pl-en">use</span>(remarkStringify)
+  .<span class="pl-en">process</span>(<span class="pl-s"><span class="pl-pds">'</span>@unifiedjs<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-smi">error</span>, <span class="pl-smi">file</span>) {
+    <span class="pl-k">if</span> (error) <span class="pl-k">throw</span> error
+    <span class="pl-k">if</span> (file) {
+      <span class="pl-en">console</span>.<span class="pl-c1">error</span>(<span class="pl-en">reporter</span>(file))
+      <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-c1">String</span>(file))
+    }
+  })
+</code></pre>
+          <p>Yields:</p>
+          <pre><code class="language-txt">no issues found
+</code></pre>
+          <pre><code class="language-markdown"><span class="pl-s">[**@<span class="pl-corl">unifiedjs</span>**](<span class="pl-corl">https://github.com/unifiedjs</span>)</span>
+</code></pre>
+          <h3 id="processor-1"><a aria-hidden="true" tabindex="-1" href="#processor-1"><span class="icon icon-link"></span></a><code>Processor</code></h3>
+          <p>Type of a <a href="#processor"><code>processor</code></a> (TypeScript type).</p>
+          <h3 id="runcallback"><a aria-hidden="true" tabindex="-1" href="#runcallback"><span class="icon icon-link"></span></a><code>RunCallback</code></h3>
+          <p>Callback called when transformers are done (TypeScript type).</p>
+          <p>Called with either an error or results.</p>
+          <h6 id="parameters-9"><a aria-hidden="true" tabindex="-1" href="#parameters-9"><span class="icon icon-link"></span></a>Parameters</h6>
+          <ul>
+            <li>
+              <code>error</code> (<code>Error</code>, optional)
+              — fatal error
+            </li>
+            <li>
+              <code>tree</code> (<a href="https://github.com/syntax-tree/unist#node"><code>Node</code></a>, optional)
+              — transformed tree
+            </li>
+            <li>
+              <code>file</code> (<a href="https://github.com/vfile/vfile"><code>VFile</code></a>, optional)
+              — file
+            </li>
+          </ul>
+          <h6 id="returns-11"><a aria-hidden="true" tabindex="-1" href="#returns-11"><span class="icon icon-link"></span></a>Returns</h6>
+          <p>Nothing (<code>undefined</code>).</p>
+          <h3 id="settings"><a aria-hidden="true" tabindex="-1" href="#settings"><span class="icon icon-link"></span></a><code>Settings</code></h3>
+          <p>
+            Interface of known extra options, that can be supported by parser and
+            compilers.
+          </p>
+          <p>
+            This exists so that users can use packages such as <code>remark</code>, which configure
+            both parsers and compilers (in this case <code>remark-parse</code> and
+            <code>remark-stringify</code>), and still provide options for them.
+          </p>
+          <p>
+            When you make parsers or compilers, that could be packaged up together, you
+            should support <code>this.data('settings')</code> as input and merge it with explicitly
+            passed <code>options</code>.
+            Then, to type it, using <code>remark-stringify</code> as an example, do something like:
+          </p>
+          <pre><code class="language-ts"><span class="pl-k">declare</span> <span class="pl-k">module</span> <span class="pl-s"><span class="pl-pds">'</span>unified<span class="pl-pds">'</span></span> {
+  <span class="pl-k">interface</span> <span class="pl-en">Settings</span> {
+    <span class="pl-v">bullet</span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>*<span class="pl-pds">'</span></span> <span class="pl-k">|</span> <span class="pl-s"><span class="pl-pds">'</span>+<span class="pl-pds">'</span></span> <span class="pl-k">|</span> <span class="pl-s"><span class="pl-pds">'</span>-<span class="pl-pds">'</span></span>
+    <span class="pl-c">// …</span>
+  }
+}
+
+<span class="pl-k">export</span> {} <span class="pl-c">// You may not need this, but it makes sure the file is a module.</span>
+</code></pre>
+          <h6 id="type-9"><a aria-hidden="true" tabindex="-1" href="#type-9"><span class="icon icon-link"></span></a>Type</h6>
+          <pre><code class="language-ts"><span class="pl-k">interface</span> <span class="pl-en">Settings</span> {}
+</code></pre>
+          <h3 id="transformcallback"><a aria-hidden="true" tabindex="-1" href="#transformcallback"><span class="icon icon-link"></span></a><code>TransformCallback</code></h3>
+          <p>Callback passed to transforms (TypeScript type).</p>
+          <p>
+            If the signature of a <code>transformer</code> accepts a third argument, the transformer
+            may perform asynchronous operations, and must call it.
+          </p>
+          <h6 id="parameters-10"><a aria-hidden="true" tabindex="-1" href="#parameters-10"><span class="icon icon-link"></span></a>Parameters</h6>
+          <ul>
+            <li>
+              <code>error</code> (<code>Error</code>, optional)
+              — fatal error to stop the process
+            </li>
+            <li>
+              <code>tree</code> (<a href="https://github.com/syntax-tree/unist#node"><code>Node</code></a>, optional)
+              — new, changed, tree
+            </li>
+            <li>
+              <code>file</code> (<a href="https://github.com/vfile/vfile"><code>VFile</code></a>, optional)
+              — new, changed, file
+            </li>
+          </ul>
+          <h6 id="returns-12"><a aria-hidden="true" tabindex="-1" href="#returns-12"><span class="icon icon-link"></span></a>Returns</h6>
+          <p>Nothing (<code>undefined</code>).</p>
+          <h3 id="transformer"><a aria-hidden="true" tabindex="-1" href="#transformer"><span class="icon icon-link"></span></a><code>Transformer</code></h3>
+          <p>Transformers handle syntax trees and files (TypeScript type).</p>
+          <p>
+            They are functions that are called each time a syntax tree and file are
+            passed through the run phase.
+            When an error occurs in them (either because it’s thrown, returned,
+            rejected, or passed to <code>next</code>), the process stops.
+          </p>
+          <p>
+            The run phase is handled by <a href="https://github.com/wooorm/trough#function-fninput-next"><code>trough</code></a>, see its documentation for
+            the exact semantics of these functions.
+          </p>
+          <blockquote>
+            <p>
+              👉 <strong>Note</strong>: you should likely ignore <code>next</code>: don’t accept it.
+              it supports callback-style async work.
+              But promises are likely easier to reason about.
+            </p>
+          </blockquote>
+          <h6 id="type-10"><a aria-hidden="true" tabindex="-1" href="#type-10"><span class="icon icon-link"></span></a>Type</h6>
+          <pre><code class="language-ts"><span class="pl-k">type</span> <span class="pl-en">Transformer</span>&#x3C;
+  <span class="pl-en">Input</span> <span class="pl-k">extends</span> <span class="pl-en">Node</span> <span class="pl-k">=</span> <span class="pl-en">Node</span>,
+  <span class="pl-en">Output</span> <span class="pl-k">extends</span> <span class="pl-en">Node</span> <span class="pl-k">=</span> <span class="pl-en">Input</span>
+> <span class="pl-k">=</span> (
+  <span class="pl-v">tree</span><span class="pl-k">:</span> <span class="pl-en">Input</span>,
+  <span class="pl-v">file</span><span class="pl-k">:</span> <span class="pl-en">VFile</span>,
+  <span class="pl-v">next</span><span class="pl-k">:</span> <span class="pl-en">TransformCallback</span>&#x3C;<span class="pl-en">Output</span>>
+) <span class="pl-k">=></span>
+  <span class="pl-k">|</span> <span class="pl-en">Promise</span>&#x3C;<span class="pl-en">Output</span> <span class="pl-k">|</span> <span class="pl-c1">undefined</span>>
+  <span class="pl-k">|</span> <span class="pl-en">Output</span>
+  <span class="pl-k">|</span> <span class="pl-en">Error</span>
+  <span class="pl-k">|</span> <span class="pl-c1">undefined</span>
+</code></pre>
+          <h2 id="types"><a aria-hidden="true" tabindex="-1" href="#types"><span class="icon icon-link"></span></a>Types</h2>
+          <p>
+            This package is fully typed with <a href="https://www.typescriptlang.org">TypeScript</a>.
+            It exports the additional types
+            <a href="#compileresultmap"><code>CompileResultMap</code></a>,
+            <a href="#compileresults"><code>CompileResults</code></a>,
+            <a href="#compiler"><code>Compiler</code></a>,
+            <a href="#data"><code>Data</code></a>,
+            <a href="#parser"><code>Parser</code></a>,
+            <a href="#pluggable"><code>Pluggable</code></a>,
+            <a href="#pluggablelist"><code>PluggableList</code></a>,
+            <a href="#plugin"><code>Plugin</code></a>,
+            <a href="#plugintuple"><code>PluginTuple</code></a>,
+            <a href="#preset"><code>Preset</code></a>,
+            <a href="#processcallback"><code>ProcessCallback</code></a>,
+            <a href="#processor"><code>Processor</code></a>,
+            <a href="#runcallback"><code>RunCallback</code></a>,
+            <a href="#settings"><code>Settings</code></a>,
+            <a href="#transformcallback"><code>TransformCallback</code></a>,
+            and <a href="#transformer"><code>Transformer</code></a>
+          </p>
+          <p>
+            For TypeScript to work, it is particularly important to type your plugins
+            correctly.
+            We strongly recommend using the <code>Plugin</code> type with its generics and to use the
+            node types for the syntax trees provided by our packages (as in,
+            <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/hast"><code>@types/hast</code></a>, <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/mdast"><code>@types/mdast</code></a>,
+            <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/nlcst"><code>@types/nlcst</code></a>).
+          </p>
+          <pre><code class="language-js"><span class="pl-c">/**</span>
+<span class="pl-c"> * @typedef {import('hast').Root} HastRoot</span>
+<span class="pl-c"> * @typedef {import('mdast').Root} MdastRoot</span>
+<span class="pl-c"> */</span>
+
+<span class="pl-c">/**</span>
+<span class="pl-c"> * @typedef Options</span>
+<span class="pl-c"> *   Configuration (optional).</span>
+<span class="pl-c"> * @property {boolean | null | undefined} [someField]</span>
+<span class="pl-c"> *   Some option (optional).</span>
+<span class="pl-c"> */</span>
+
+<span class="pl-c">// To type options:</span>
+<span class="pl-c">/** @type {import('unified').Plugin&#x3C;[(Options | null | undefined)?]>} */</span>
+<span class="pl-k">export</span> <span class="pl-k">function</span> <span class="pl-en">myPluginAcceptingOptions</span>(<span class="pl-smi">options</span>) {
+  <span class="pl-k">const</span> <span class="pl-c1">settings</span> <span class="pl-k">=</span> options <span class="pl-k">||</span> {}
+  <span class="pl-c">// `settings` is now `Options`.</span>
+}
+
+<span class="pl-c">// To type a plugin that works on a certain tree, without options:</span>
+<span class="pl-c">/** @type {import('unified').Plugin&#x3C;[], MdastRoot>} */</span>
+<span class="pl-k">export</span> <span class="pl-k">function</span> <span class="pl-en">myRemarkPlugin</span>() {
+  <span class="pl-k">return</span> <span class="pl-k">function</span> (<span class="pl-smi">tree</span>, <span class="pl-smi">file</span>) {
+    <span class="pl-c">// `tree` is `MdastRoot`.</span>
+  }
+}
+
+<span class="pl-c">// To type a plugin that transforms one tree into another:</span>
+<span class="pl-c">/** @type {import('unified').Plugin&#x3C;[], MdastRoot, HastRoot>} */</span>
+<span class="pl-k">export</span> <span class="pl-k">function</span> <span class="pl-en">remarkRehype</span>() {
+  <span class="pl-k">return</span> <span class="pl-k">function</span> (<span class="pl-smi">tree</span>) {
+    <span class="pl-c">// `tree` is `MdastRoot`.</span>
+    <span class="pl-c">// Result must be `HastRoot`.</span>
+  }
+}
+
+<span class="pl-c">// To type a plugin that defines a parser:</span>
+<span class="pl-c">/** @type {import('unified').Plugin&#x3C;[], string, MdastRoot>} */</span>
+<span class="pl-k">export</span> <span class="pl-k">function</span> <span class="pl-en">remarkParse</span>(<span class="pl-smi">options</span>) {}
+
+<span class="pl-c">// To type a plugin that defines a compiler:</span>
+<span class="pl-c">/** @type {import('unified').Plugin&#x3C;[], HastRoot, string>} */</span>
+<span class="pl-k">export</span> <span class="pl-k">function</span> <span class="pl-en">rehypeStringify</span>(<span class="pl-smi">options</span>) {}
+</code></pre>
+          <h2 id="compatibility"><a aria-hidden="true" tabindex="-1" href="#compatibility"><span class="icon icon-link"></span></a>Compatibility</h2>
+          <p>
+            Projects maintained by the unified collective are compatible with maintained
+            versions of Node.js.
+          </p>
+          <p>
+            When we cut a new major release, we drop support for unmaintained versions of
+            Node.
+            This means we try to keep the current release line, <code>unified@^11</code>, compatible
+            with Node.js 16.
+          </p>
+          <h2 id="contribute"><a aria-hidden="true" tabindex="-1" href="#contribute"><span class="icon icon-link"></span></a>Contribute</h2>
+          <p>
+            See <a href="https://github.com/unifiedjs/.github/blob/main/contributing.md"><code>contributing.md</code></a> in <a href="https://github.com/unifiedjs/.github"><code>unifiedjs/.github</code></a> for ways
+            to get started.
+            See <a href="https://github.com/unifiedjs/.github/blob/main/support.md"><code>support.md</code></a> for ways to get help.
+          </p>
+          <p>
+            This project has a <a href="https://github.com/unifiedjs/.github/blob/main/code-of-conduct.md">code of conduct</a>.
+            By interacting with this repository, organization, or community you agree to
+            abide by its terms.
+          </p>
+          <p>
+            For info on how to submit a security report, see our
+            <a href="https://github.com/unifiedjs/.github/blob/main/security.md">security policy</a>.
+          </p>
+          <h2 id="sponsor"><a aria-hidden="true" tabindex="-1" href="#sponsor"><span class="icon icon-link"></span></a>Sponsor</h2>
+          <p>Support this effort and give back by sponsoring on <a href="https://opencollective.com/unified">OpenCollective</a>!</p>
+          <h2 id="acknowledgments"><a aria-hidden="true" tabindex="-1" href="#acknowledgments"><span class="icon icon-link"></span></a>Acknowledgments</h2>
+          <p>
+            Preliminary work for unified was done <a href="https://github.com/retextjs/retext/commit/8fcb1f">in 2014</a> for
+            <strong><a href="https://github.com/retextjs/retext">retext</a></strong> and inspired by <a href="https://github.com/segmentio/ware"><code>ware</code></a>.
+            Further incubation happened in <strong><a href="https://github.com/remarkjs/remark">remark</a></strong>.
+            The project was finally <a href="https://github.com/remarkjs/remark/commit/9892ec">externalised</a> in 2015 and <a href="https://github.com/unifiedjs/unified/commit/2ba1cf">published</a> as <code>unified</code>.
+            The project was authored by <strong><a href="https://github.com/wooorm">@wooorm</a></strong>.
+          </p>
+          <p>
+            Although <code>unified</code> since moved its plugin architecture to <a href="https://github.com/wooorm/trough#function-fninput-next"><code>trough</code></a>,
+            thanks to <strong><a href="https://github.com/calvinfo">@calvinfo</a></strong>,
+            <strong><a href="https://github.com/ianstormtaylor">@ianstormtaylor</a></strong>, and others for their
+            work on <a href="https://github.com/segmentio/ware"><code>ware</code></a>, as it was a huge initial inspiration.
+          </p>
+          <h2 id="license"><a aria-hidden="true" tabindex="-1" href="#license"><span class="icon icon-link"></span></a>License</h2>
+          <p><a href="license">MIT</a> © <a href="https://wooorm.com">Titus Wormer</a></p>
+        </body>
+      </html>
+    </article>
+    <script src="/assets/js/code-block.js"></script>
+    <script src="/assets/js/mathjax.js"></script>
+    <script src="/assets/js/mermaid.js"></script>
+  </body>
+</html>

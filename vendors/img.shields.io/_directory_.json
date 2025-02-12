@@ -1,0 +1,25 @@
+{
+  "title": "/vendors/img.shields.io",
+  "files": [
+    {
+      "type": "folder",
+      "title": "badge",
+      "href": "badge"
+    },
+    {
+      "type": "folder",
+      "title": "bundlejs",
+      "href": "bundlejs"
+    },
+    {
+      "type": "folder",
+      "title": "codecov",
+      "href": "codecov"
+    },
+    {
+      "type": "folder",
+      "title": "npm",
+      "href": "npm"
+    }
+  ]
+}

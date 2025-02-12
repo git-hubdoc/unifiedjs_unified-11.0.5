@@ -1,0 +1,110 @@
+{
+  "title": "/",
+  "files": [
+    {
+      "type": "blob",
+      "title": ".editorconfig",
+      "href": ".editorconfig"
+    },
+    {
+      "type": "folder",
+      "title": ".github",
+      "href": ".github"
+    },
+    {
+      "type": "blob",
+      "title": ".gitignore",
+      "href": ".gitignore"
+    },
+    {
+      "type": "blob",
+      "title": ".npmrc",
+      "href": ".npmrc"
+    },
+    {
+      "type": "blob",
+      "title": ".prettierignore",
+      "href": ".prettierignore"
+    },
+    {
+      "type": "folder",
+      "title": "assets",
+      "href": "assets"
+    },
+    {
+      "type": "blob",
+      "title": "changelog.html",
+      "href": "changelog.html"
+    },
+    {
+      "type": "blob",
+      "title": "changelog.md",
+      "href": "changelog.md"
+    },
+    {
+      "type": "blob",
+      "title": "index.d.ts",
+      "href": "index.d.ts"
+    },
+    {
+      "type": "blob",
+      "title": "index.js",
+      "href": "index.js"
+    },
+    {
+      "type": "blob",
+      "title": "index.test-d.ts",
+      "href": "index.test-d.ts"
+    },
+    {
+      "type": "folder",
+      "title": "lib",
+      "href": "lib"
+    },
+    {
+      "type": "blob",
+      "title": "license",
+      "href": "license"
+    },
+    {
+      "type": "blob",
+      "title": "logo.svg",
+      "href": "logo.svg"
+    },
+    {
+      "type": "blob",
+      "title": "package.json",
+      "href": "package.json"
+    },
+    {
+      "type": "blob",
+      "title": "readme.html",
+      "href": "readme.html"
+    },
+    {
+      "type": "blob",
+      "title": "readme.md",
+      "href": "readme.md"
+    },
+    {
+      "type": "folder",
+      "title": "script",
+      "href": "script"
+    },
+    {
+      "type": "folder",
+      "title": "test",
+      "href": "test"
+    },
+    {
+      "type": "blob",
+      "title": "tsconfig.json",
+      "href": "tsconfig.json"
+    },
+    {
+      "type": "folder",
+      "title": "vendors",
+      "href": "vendors"
+    }
+  ]
+}

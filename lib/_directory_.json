@@ -1,0 +1,15 @@
+{
+  "title": "/lib",
+  "files": [
+    {
+      "type": "blob",
+      "title": "callable-instance.js",
+      "href": "callable-instance.js"
+    },
+    {
+      "type": "blob",
+      "title": "index.js",
+      "href": "index.js"
+    }
+  ]
+}

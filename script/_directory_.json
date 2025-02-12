@@ -1,0 +1,10 @@
+{
+  "title": "/script",
+  "files": [
+    {
+      "type": "blob",
+      "title": "fix-types.js",
+      "href": "fix-types.js"
+    }
+  ]
+}

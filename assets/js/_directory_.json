@@ -1,0 +1,30 @@
+{
+  "title": "/assets/js",
+  "files": [
+    {
+      "type": "blob",
+      "title": "code-block.js",
+      "href": "code-block.js"
+    },
+    {
+      "type": "blob",
+      "title": "directory.js",
+      "href": "directory.js"
+    },
+    {
+      "type": "blob",
+      "title": "mathjax.js",
+      "href": "mathjax.js"
+    },
+    {
+      "type": "blob",
+      "title": "mermaid-config.js",
+      "href": "mermaid-config.js"
+    },
+    {
+      "type": "blob",
+      "title": "mermaid.js",
+      "href": "mermaid.js"
+    }
+  ]
+}

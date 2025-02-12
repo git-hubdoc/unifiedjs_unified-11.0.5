@@ -1,0 +1,10 @@
+{
+  "title": "/vendors/img.shields.io/bundlejs/size",
+  "files": [
+    {
+      "type": "blob",
+      "title": "unified",
+      "href": "unified"
+    }
+  ]
+}

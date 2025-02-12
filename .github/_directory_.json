@@ -1,0 +1,10 @@
+{
+  "title": "/.github",
+  "files": [
+    {
+      "type": "folder",
+      "title": "workflows",
+      "href": "workflows"
+    }
+  ]
+}

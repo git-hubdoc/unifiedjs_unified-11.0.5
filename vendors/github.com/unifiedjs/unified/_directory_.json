@@ -1,0 +1,10 @@
+{
+  "title": "/vendors/github.com/unifiedjs/unified",
+  "files": [
+    {
+      "type": "folder",
+      "title": "workflows",
+      "href": "workflows"
+    }
+  ]
+}

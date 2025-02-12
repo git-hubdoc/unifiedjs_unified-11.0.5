@@ -1,0 +1,10 @@
+{
+  "title": "/vendors/img.shields.io/codecov/c/github",
+  "files": [
+    {
+      "type": "folder",
+      "title": "unifiedjs",
+      "href": "unifiedjs"
+    }
+  ]
+}

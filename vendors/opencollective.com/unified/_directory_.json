@@ -1,0 +1,15 @@
+{
+  "title": "/vendors/opencollective.com/unified",
+  "files": [
+    {
+      "type": "folder",
+      "title": "backers",
+      "href": "backers"
+    },
+    {
+      "type": "folder",
+      "title": "sponsors",
+      "href": "sponsors"
+    }
+  ]
+}
